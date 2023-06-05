@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Registration</title>
+    	<style>
+/* Stile per il body */
+body {
+	font-family: Arial, sans-serif;
+	background-color: #F7F7F7;
+	margin: 0;
+	padding: 0;
+}
+
+/* Stile per l'h1 */
+h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+/* Stile per il form */
+form {
+	max-width: 500px;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px #999999;
+}
+
+/* Stile per le label */
+label {
+	display: block;
+	font-size: 16px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+/* Stile per gli input */
+input[type=text], input[type=email],input[type=TitoloStudio],input[type=Nazionalita],[type=password], input[type=date], select {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #CCCCCC;
+	height: 40px;
+	box-sizing: border-box;
+}
+
+/* Stile per il pulsante submit */
+input[type=submit] {
+	display: block;
+	background-color: rgb(255, 128, 0);
+	color: #FFFFFF;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* Stile per il pulsante submit al passaggio del mouse */
+input[type=submit]:hover {
+	background-color: rgb(255, 128, 0);
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6 mx-auto">
+			<h1>
+					<font color="orange"> Student Registration Form
+					<font color="black"></h1>
+					
+					<script>
+					var check = function() 	{
+						if(document.getElementById('password').value != 
+							document.getElementById('repeatPassword').value){
+							document.getElementById('message').style.color = 'red'; 
+							document.getElementById('message').innerHTML = 'Passwords do not match';
+							document.getElementById('Register').disabled = true;
+							document.getElementById('Register').style.backgroundColor = 'Gray'; 
+						} else{
+							document.getElementById('message').style.color = 'green'; 
+							document.getElementById('message').innerHTML = 'Passwords Match';
+							document.getElementById('Register').disabled = false;
+							document.getElementById('Register').style.backgroundColor = 'Orange';
+						}
+					}
+					</script>
+					
+					
+					
+            <form
+                    method="post"
+                    role="form"
+                    th:action="@{/registration}"
+                    th:object="${user}"
+            >
+          		<div th:if="${param.success}">
+                    <div class="alert alert-info">
+                        <font color="green"> <strong> Registration Successfull!! </strong>
+					<font color="black">
+                    </div>
+                </div>
+                
+                <div th:if="${#fields.hasErrors('email')}">
+                    <div class="alert alert-info">
+                        <font color="red"> <strong> Student Already Registered!! </strong>
+					<font color="black">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-control" id="name" name="name" type="text" required>
+                    <p class="text-danger" th:errors="*{name}"
+                       th:if="${#fields.hasErrors('name')}"></p>
+                </div>
+            
+                
+                <div class="mb-3">
+                    <label class="form-label" for="surname">Surname</label>
+                    <input class="form-control" id="surname" name="surname" type="text" required>
+                    <p class="text-danger" th:errors="*{surname}"
+                       th:if="${#fields.hasErrors('surname')}"></p>
+                </div>
+               
+                
+                <div class="mb-3">
+                    <label class="form-label" for="dateOfBirth">Date Of Birth</label>
+                    <input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date" required>
+                    <p class="text-danger" th:errors="*{dateOfBirth}"
+                       th:if="${#fields.hasErrors('dateOfBirth')}"></p>
+                </div>
+                
+                
+                <div class="mb-3">
+                    <label class="form-label" for="gender">Gender</label>
+                    <select class="form-control" id="gender" name="gender" required>
+						<option value="">-- Select Gender --</option>
+						<option value="M">Male</option>
+						<option value="F">Female</option>
+						<option value="Other">Other</option>
+					</select>
+                    <p class="text-danger" th:errors="*{gender}"
+                       th:if="${#fields.hasErrors('gender')}"></p>
+                </div><br>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="nationality">Nationality</label>
+                    <select class="form-control" id="nationality" name="nationality" required>
+                    	  <option value="">-- Select Nationality --</option>
+						  <option value="Afghan">Afghan</option>
+						  <option value="Albanian">Albanian</option>
+						  <option value="Algerian">Algerian</option>
+						  <option value="American">American</option>
+						  <option value="Andorran">Andorran</option>
+						  <option value="Angolan">Angolan</option>
+						  <option value="Antiguans">Antiguans</option>
+						  <option value="Argentinean">Argentinean</option>
+						  <option value="Armenian">Armenian</option>
+						  <option value="Australian">Australian</option>
+						  <option value="Austrian">Austrian</option>
+						  <option value="Azerbaijani">Azerbaijani</option>
+						  <option value="Bahamian">Bahamian</option>
+						  <option value="Bahraini">Bahraini</option>
+						  <option value="Bangladeshi">Bangladeshi</option>
+						  <option value="Barbadian">Barbadian</option>
+						  <option value="Barbudans">Barbudans</option>
+						  <option value="Batswana">Batswana</option>
+						  <option value="Belarusian">Belarusian</option>
+						  <option value="Belgian">Belgian</option>
+						  <option value="Belizean">Belizean</option>
+						  <option value="Beninese">Beninese</option>
+						  <option value="Bhutanese">Bhutanese</option>
+						  <option value="Bolivian">Bolivian</option>
+						  <option value="Bosnian">Bosnian</option>
+						  <option value="Brazilian">Brazilian</option>
+						  <option value="British">British</option>
+						  <option value="Bruneian">Bruneian</option>
+						  <option value="Bulgarian">Bulgarian</option>
+						  <option value="Burkinabe">Burkinabe</option>
+						  <option value="Burmese">Burmese</option>
+						  <option value="Burundian">Burundian</option>
+						  <option value="Cambodian">Cambodian</option>
+						  <option value="Cameroonian">Cameroonian</option>
+						  <option value="Canadian">Canadian</option>
+						  <option value="Cape verdean">Cape Verdean</option>
+						  <option value="Central african">Central African</option>
+						  <option value="Chadian">Chadian</option>
+						  <option value="Chilean">Chilean</option>
+						  <option value="Chinese">Chinese</option>
+						  <option value="Colombian">Colombian</option>
+						  <option value="Comoran">Comoran</option>
+						  <option value="Congolese">Congolese</option>
+						  <option value="Costa rican">Costa Rican</option>
+						  <option value="Croatian">Croatian</option>
+						  <option value="Cuban">Cuban</option>
+						  <option value="Cypriot">Cypriot</option>
+						  <option value="Czech">Czech</option>
+						  <option value="Danish">Danish</option>
+						  <option value="Djibouti">Djibouti</option>
+						  <option value="Dominican">Dominican</option>
+						  <option value="Dutch">Dutch</option>
+						  <option value="East timorese">East Timorese</option>
+						  <option value="Ecuadorean">Ecuadorean</option>
+						  <option value="Egyptian">Egyptian</option>
+						  <option value="Emirian">Emirian</option>
+						  <option value="Equatorial guinean">Equatorial Guinean</option>
+						  <option value="Eritrean">Eritrean</option>
+						  <option value="Estonian">Estonian</option>
+						  <option value="Ethiopian">Ethiopian</option>
+						  <option value="Fijian">Fijian</option>
+						  <option value="Filipino">Filipino</option>
+						  <option value="Finnish">Finnish</option>
+						  <option value="French">French</option>
+						  <option value="Gabonese">Gabonese</option>
+						  <option value="Gambian">Gambian</option>
+						  <option value="Georgian">Georgian</option>
+						  <option value="German">German</option>
+						  <option value="Ghanaian">Ghanaian</option>
+						  <option value="Greek">Greek</option>
+						  <option value="Grenadian">Grenadian</option>
+						  <option value="Guatemalan">Guatemalan</option>
+						  <option value="Guinea-bissauan">Guinea-Bissauan</option>
+						  <option value="Guinean">Guinean</option>
+						  <option value="Guyanese">Guyanese</option>
+						  <option value="Haitian">Haitian</option>
+						  <option value="Herzegovinian">Herzegovinian</option>
+						  <option value="Honduran">Honduran</option>
+						  <option value="Hungarian">Hungarian</option>
+						  <option value="Icelander">Icelander</option>
+						  <option value="Indian">Indian</option>
+						  <option value="Indonesian">Indonesian</option>
+						  <option value="Iranian">Iranian</option>
+						  <option value="Iraqi">Iraqi</option>
+						  <option value="Irish">Irish</option>
+						  <option value="Israeli">Israeli</option>
+						  <option value="Italian">Italian</option>
+						  <option value="Ivorian">Ivorian</option>
+						  <option value="Jamaican">Jamaican</option>
+						  <option value="Japanese">Japanese</option>
+						  <option value="Jordanian">Jordanian</option>
+						  <option value="Kazakhstani">Kazakhstani</option>
+						  <option value="Kenyan">Kenyan</option>
+						  <option value="Kittian and nevisian">Kittian and Nevisian</option>
+						  <option value="Kuwaiti">Kuwaiti</option>
+						  <option value="Kyrgyz">Kyrgyz</option>
+						  <option value="Laotian">Laotian</option>
+						  <option value="Latvian">Latvian</option>
+						  <option value="Lebanese">Lebanese</option>
+						  <option value="Liberian">Liberian</option>
+						  <option value="Libyan">Libyan</option>
+						  <option value="Liechtensteiner">Liechtensteiner</option>
+						  <option value="Lithuanian">Lithuanian</option>
+						  <option value="Luxembourger">Luxembourger</option>
+						  <option value="Macedonian">Macedonian</option>
+						  <option value="Malagasy">Malagasy</option>
+						  <option value="Malawian">Malawian</option>
+						  <option value="Malaysian">Malaysian</option>
+						  <option value="Maldivan">Maldivan</option>
+						  <option value="Malian">Malian</option>
+						  <option value="Maltese">Maltese</option>
+						  <option value="Marshallese">Marshallese</option>
+						  <option value="Mauritanian">Mauritanian</option>
+						  <option value="Mauritian">Mauritian</option>
+						  <option value="Mexican">Mexican</option>
+						  <option value="Micronesian">Micronesian</option>
+						  <option value="Moldovan">Moldovan</option>
+						  <option value="Monacan">Monacan</option>
+						  <option value="Mongolian">Mongolian</option>
+						  <option value="Moroccan">Moroccan</option>
+						  <option value="Mosotho">Mosotho</option>
+						  <option value="Motswana">Motswana</option>
+						  <option value="Mozambican">Mozambican</option>
+						  <option value="Namibian">Namibian</option>
+						  <option value="Nauruan">Nauruan</option>
+						  <option value="Nepalese">Nepalese</option>
+						  <option value="New zealander">New Zealander</option>
+						  <option value="Ni-vanuatu">Ni-Vanuatu</option>
+						  <option value="Nicaraguan">Nicaraguan</option>
+						  <option value="Nigerien">Nigerien</option>
+						  <option value="North korean">North Korean</option>
+						  <option value="Northern irish">Northern Irish</option>
+						  <option value="Norwegian">Norwegian</option>
+						  <option value="Omani">Omani</option>
+						  <option value="Pakistani">Pakistani</option>
+						  <option value="alauan">Palauan</option>
+						  <option value="Panamanian">Panamanian</option>
+						  <option value="Papua new guinean">Papua New Guinean</option>
+						  <option value="Paraguayan">Paraguayan</option>
+						  <option value="Peruvian">Peruvian</option>
+						  <option value="Polish">Polish</option>
+						  <option value="Portuguese">Portuguese</option>
+						  <option value="Qatari">Qatari</option>
+						  <option value="Romanian">Romanian</option>
+						  <option value="Russian">Russian</option>
+						  <option value="Rwandan">Rwandan</option>
+						  <option value="Saint lucian">Saint Lucian</option>
+						  <option value="Salvadoran">Salvadoran</option>
+						  <option value="Samoan">Samoan</option>
+						  <option value="San marinese">San Marinese</option>
+						  <option value="Sao tomean">Sao Tomean</option>
+						  <option value="Saudi">Saudi</option>
+						  <option value="Scottish">Scottish</option>
+						  <option value="Senegalese">Senegalese</option>
+						  <option value="Serbian">Serbian</option>
+						  <option value="Seychellois">Seychellois</option>
+						  <option value="Sierra leonean">Sierra Leonean</option>
+						  <option value="Singaporean">Singaporean</option>
+						  <option value="Slovakian">Slovakian</option>
+						  <option value="Slovenian">Slovenian</option>
+						  <option value="Solomon islander">Solomon Islander</option>
+						  <option value="Somali">Somali</option>
+						  <option value="South african">South African</option>
+						  <option value="South korean">South Korean</option>
+						  <option value="Spanish">Spanish</option>
+						  <option value="Sri lankan">Sri Lankan</option>
+						  <option value="Sudanese">Sudanese</option>
+						  <option value="Surinamer">Surinamer</option>
+						  <option value="Swazi">Swazi</option>
+						  <option value="Swedish">Swedish</option>
+						  <option value="Swiss">Swiss</option>
+						  <option value="Syrian">Syrian</option>
+						  <option value="Taiwanese">Taiwanese</option>
+						  <option value="Tajik">Tajik</option>
+						  <option value="Tanzanian">Tanzanian</option>
+						  <option value="Thai">Thai</option>
+						  <option value="Togolese">Togolese</option>
+						  <option value="Tongan">Tongan</option>
+						  <option value="Trinidadian or tobagonian">Trinidadian or Tobagonian</option>
+						  <option value="Tunisian">Tunisian</option>
+						  <option value="Turkish">Turkish</option>
+						  <option value="Tuvaluan">Tuvaluan</option>
+						  <option value="Ugandan">Ugandan</option>
+						  <option value="Ukrainian">Ukrainian</option>
+						  <option value="Uruguayan">Uruguayan</option>
+						  <option value="zbekistani">Uzbekistani</option>
+						  <option value="Venezuelan">Venezuelan</option>
+						  <option value="Vietnamese">Vietnamese</option>
+						  <option value="Welsh">Welsh</option>
+						  <option value="Yemenite">Yemenite</option>
+						  <option value="Zambian">Zambian</option>
+						  <option value="Zimbabwean">Zimbabwean</option>
+						</select>	
+                    <p class="text-danger" th:errors="*{nationality}"
+                       th:if="${#fields.hasErrors('nationality')}"></p>
+                </div><br>
+                
+                
+                
+                <div class="mb-3">
+                    <label class="form-label" for="studyTitle">Degree</label>
+                    <select class="form-control" id="studyTitle" name="studyTitle" required>
+						<option value="">-- Select Degree --</option>
+						<option value="Bachelor Degree">Bachelor Degree</option>
+						<option value="Master Degree">Master Degree</option>
+						<option value="Diploma">Diploma</option>
+						<option value="Middle School Diploma">Middle School Diploma</option>
+						<option value="N.D.">Nothing</option>
+					</select>
+                    <p class="text-danger" th:errors="*{studyTitle}"
+                       th:if="${#fields.hasErrors('studyTitle')}"></p>
+                </div><br>
+           
+                
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" id="email" name="email" type="email">
+                    
+                </div><br>
+                
+                <div class="mb-3">
+                    <label class="col-sm-2 col-form-label" for="password">Password</label>
+                    <input class="form-control" id="password" name="password" type="password" onkeyup="check();" required>
+                    <p class="text-danger" th:errors="*{password}"
+                       th:if="${#fields.hasErrors('password')}"></p>
+                </div><br>
+                
+                <div class="mb-3">
+                    <label class="col-sm-2 col-form-label" for="repeatPassword">Repeat Password</label>
+                    <input class="form-control" id="repeatPassword" name="repeatPassword" type="password" onkeyup="check();" required>
+                   	<span id='message'></span>
+                </div><br>
+                
+                
+                <div class="mb-3" style="display: flex; justify-content: space-between;">
+					<a th:href="@{/login}" class="Annulla">Annulla</a>
+					<input type="submit" id="Register" value="Register" >	
+				
+				</div>
+                
+                <script>
+					function myFunction()
+					{
+						alert("Registration Successfull");
+					}
+				</script>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
