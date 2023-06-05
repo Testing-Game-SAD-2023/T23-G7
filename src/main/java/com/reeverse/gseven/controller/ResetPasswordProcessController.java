@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.reeverse.gseven.model.User;
+import com.reeverse.gseven.model.Student;
 import com.reeverse.gseven.service.UserServiceImpl;
 
 @Controller
@@ -34,7 +34,7 @@ public class ResetPasswordProcessController {
 	@PostMapping("/{pswtoken}")
 	public String resetPasswordProcess(@PathVariable("pswtoken") String pswtoken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
 		
-		User existingUser = null;
+		Student existingUser = null;
 		existingUser = userService.findByPasswordToken(pswtoken);
 		
 		

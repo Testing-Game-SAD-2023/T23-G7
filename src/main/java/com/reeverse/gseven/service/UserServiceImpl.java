@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.reeverse.gseven.dto.UserDto;
 import com.reeverse.gseven.model.Role;
-import com.reeverse.gseven.model.User;
+import com.reeverse.gseven.model.Student;
 import com.reeverse.gseven.repository.RoleRepository;
 import com.reeverse.gseven.repository.UserRepository;
 
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 		if(studentRole == null)
 			studentRole = roleRepository.save(new Role("STUDENTE"));
 		
-		User user = new User(userDto.getName(),
+		Student user = new Student(userDto.getName(),
 							 userDto.getSurname(),
 							 userDto.getGender(),
 							 userDto.getNationality(),
@@ -59,14 +59,14 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-	public void updatePassword(User user, String newPassword) {
+	public void updatePassword(Student user, String newPassword) {
 		
 		user.setPassword(passwordEncoder.encode(newPassword));
 		user.setPasswordToken("");
 		userRepository.save(user);
 	}
 	
-	public void beginChangePassword(User user) {
+	public void beginChangePassword(Student user) {
 		String passwordToken = UUID.randomUUID().toString();
 		
 		user.setPasswordToken(passwordToken);
@@ -74,14 +74,14 @@ public class UserServiceImpl implements UserService {
 		sendEmailResetPassword(user, "localhost:8080", passwordToken);
 	}
 	
-	public void sendEmailResetPassword(User user, String siteURL, String passwordToken) {
+	public void sendEmailResetPassword(Student user, String siteURL, String passwordToken) {
 		String subject = "Cambio password";
 		String body = "Clicca sul seguente link per cambiare la tua password: " +
 				siteURL+ "/resetPasswordProcess/" + passwordToken;
 		emailService.sendEmail(user.getEmail(), subject, body);
 	}
 	
-	private void sendVerificationEmail(User user, String siteURL, String confirmationToken){
+	private void sendVerificationEmail(Student user, String siteURL, String confirmationToken){
 		String subject = "Conferma registrazione";
 		String body = "Clicca sul seguente link per confermare la tua registrazione: " +
 				siteURL+ "/confirm/token=" + confirmationToken;
@@ -90,22 +90,22 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public User findByConfirmationToken(String token) {
+	public Student findByConfirmationToken(String token) {
 		return userRepository.findByConfirmationToken(token);
 	}
 	
 	@Override
-	public User findUserByEmail(String email) {
+	public Student findUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
 	
 	@Override
-	public User findByPasswordToken(String pswtoken) {
+	public Student findByPasswordToken(String pswtoken) {
 		return userRepository.findByPasswordToken(pswtoken);
 	}
 	
 	@Override
-	public void enableUser(User user) {
+	public void enableUser(Student user) {
 		user.setEnabled(true);
 		userRepository.save(user);		
 	}

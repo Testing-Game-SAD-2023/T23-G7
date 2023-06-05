@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
-    @GetMapping("/user/")
-//    @PreAuthorize("hasAuthority('STUDENTE')")
+    @GetMapping("/user")
+    @PreAuthorize("hasAuthority('STUDENTE')")
     public String HomeAccount() {
         return "user";
     }

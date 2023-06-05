@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.reeverse.gseven.model.User;
+import com.reeverse.gseven.model.Student;
 import com.reeverse.gseven.service.UserServiceImpl;
 
 @Controller
@@ -27,7 +27,7 @@ public class ResetPasswordController {
 	@PostMapping("/resetPassword")
 	public String resetPassword(@ModelAttribute("email") String email, BindingResult result, Model model) {
 		
-		User existingUser = null;
+		Student existingUser = null;
 		existingUser = userService.findUserByEmail(email);
 		
 		

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
 @Document (collection = "students")
-public class User {
+public class Student {
 	
 	@Id
 	private String id;
@@ -103,7 +103,7 @@ public class User {
 		this.passwordToken = passwordToken;
 	}
 
-	public User(String name, String surname, String sex, String nationality, String studyTitle,
+	public Student(String name, String surname, String sex, String nationality, String studyTitle,
 			String dateOfBirth, String email, String confirmationToken, boolean enabled ,String password, List<Role> roles) {
 		this.name = name;
 		this.surname = surname;
@@ -117,7 +117,7 @@ public class User {
 		this.enabled=enabled;
 		this.roles = roles;
 	}
-	public User() {
+	public Student() {
 		// TODO Auto-generated constructor stub
 	}
 

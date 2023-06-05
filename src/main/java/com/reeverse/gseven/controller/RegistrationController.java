@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.reeverse.gseven.dto.UserDto;
-import com.reeverse.gseven.model.User;
+import com.reeverse.gseven.model.Student;
 import com.reeverse.gseven.service.UserServiceImpl;
 
 @Controller
@@ -33,7 +33,7 @@ public class RegistrationController {
 	@PostMapping("/registration")
 	public String registration(@ModelAttribute("user") UserDto userDto, BindingResult result, Model model) {
 		
-		User existingUser = userService.findUserByEmail(userDto.getEmail());
+		Student existingUser = userService.findUserByEmail(userDto.getEmail());
 		
 		if(existingUser != null)
 			result.rejectValue("email", null, "User already registered!!");

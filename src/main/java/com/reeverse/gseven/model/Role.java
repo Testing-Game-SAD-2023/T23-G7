@@ -12,7 +12,6 @@ public class Role {
 	
 	private String name;
 	
-	private List <User> users = new ArrayList<>();
 	
 	public Role(String name) {
 		this.name = name;
@@ -32,14 +31,6 @@ public class Role {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
 	}
 	
 }
