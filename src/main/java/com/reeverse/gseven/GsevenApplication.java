@@ -1,4 +1,4 @@
-package com.reeverse.gseven.main;
+package com.reeverse.gseven;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

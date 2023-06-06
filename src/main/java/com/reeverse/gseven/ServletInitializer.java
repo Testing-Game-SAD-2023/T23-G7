@@ -1,9 +1,7 @@
-package com.reeverse.gseven.utility.init;
+package com.reeverse.gseven;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-
-import com.reeverse.gseven.main.GsevenApplication;
 
 public class ServletInitializer extends SpringBootServletInitializer {
 
