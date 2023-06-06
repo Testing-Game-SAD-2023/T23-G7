@@ -16,15 +16,15 @@ import org.springframework.stereotype.Service;
 
 import com.reeverse.gseven.model.dto.Role;
 import com.reeverse.gseven.model.dto.Student;
-import com.reeverse.gseven.model.dao.IStudentRepository;
+import com.reeverse.gseven.model.dao.IStudentDAO;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private IStudentRepository userRepository;
+	private IStudentDAO userRepository;
 
 	@Autowired
-	public CustomUserDetailsService(IStudentRepository userRepository) {
+	public CustomUserDetailsService(IStudentDAO userRepository) {
 		this.userRepository = userRepository;
 	}
 

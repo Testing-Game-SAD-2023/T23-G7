@@ -11,8 +11,8 @@ import org.springframework.mail.MailSendException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.reeverse.gseven.model.dao.IRoleRepository;
-import com.reeverse.gseven.model.dao.IStudentRepository;
+import com.reeverse.gseven.model.dao.IRoleDAO;
+import com.reeverse.gseven.model.dao.IStudentDAO;
 import com.reeverse.gseven.model.dto.Role;
 import com.reeverse.gseven.model.dto.Student;
 
@@ -20,10 +20,10 @@ import com.reeverse.gseven.model.dto.Student;
 public class StudentService implements IStudentService {
 
 	@Autowired
-	private IStudentRepository studentRepository;
+	private IStudentDAO studentRepository;
 	
 	@Autowired
-	private IRoleRepository roleRepository;
+	private IRoleDAO roleRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
