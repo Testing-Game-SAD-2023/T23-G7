@@ -9,43 +9,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.reeverse.gseven.dto.UserDto;
-import com.reeverse.gseven.model.Student;
-import com.reeverse.gseven.service.UserServiceImpl;
+import com.reeverse.gseven.model.dto.Student;
+import com.reeverse.gseven.model.service.StudentService;
 
 @Controller
 public class RegistrationController {
 
 	@Autowired
-	private UserServiceImpl userService;
+	private StudentService studentService;
 	
 
 	@GetMapping("/registration")
 	public String registrationForm(Model model) {
 		
-		UserDto user = new UserDto();
-		model.addAttribute("user",user);
+		//CHE ROBA E' ????
+		Student student = new Student();
+		model.addAttribute("student", student);
 		return "registration";
 	}
 	
-		
-	
 	@PostMapping("/registration")
-	public String registration(@ModelAttribute("user") UserDto userDto, BindingResult result, Model model) {
+	public String registration(@ModelAttribute("student") Student studentForm, BindingResult result, Model model) {
 		
-		Student existingUser = userService.findUserByEmail(userDto.getEmail());
+		Student student = studentService.findUserByEmail(studentForm.getEmail());
 		
-		if(existingUser != null)
+		if(student != null)
 			result.rejectValue("email", null, "User already registered!!");
 		
 		if(result.hasErrors()) {
-			model.addAttribute("user",userDto);
+			model.addAttribute("student", student);
 			return "/registration";
 		}
         
-		userService.saveUser(userDto);
-
-		//return "redirect:/registration?success";
+		studentService.saveStudent(studentForm);
+		
 		return "redirect:/login";
 	}
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Avviso Utente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        p {
+            color: #777;
+            text-align: center;
+        }
+        
+        .warning {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .countdown {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        var secondsLeft = 10;
+        
+        function countdown() {
+            var countdownElement = document.getElementById("countdown");
+            countdownElement.innerHTML = secondsLeft + " secondi";
+            
+            if (secondsLeft > 0) {
+                secondsLeft--;
+                setTimeout(countdown, 1000); // Chiamata ricorsiva ogni secondo (1000 millisecondi)
+            } else {
+                window.location.href = "login.html";
+            }
+        }
+        
+        setTimeout(countdown, 1000); // Chiamata iniziale al countdown
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Avviso Utente</h1>
+        <p class="warning">Attenzione: non sei registrato o il tuo account non è stato ancora verificato.</p>
+        <p>Per favore, registrati o controlla la tua casella postale per validare il tuo account.</p>
+        <p class="countdown" id="countdown"></p>
+    </div>
+</body>
+</html>

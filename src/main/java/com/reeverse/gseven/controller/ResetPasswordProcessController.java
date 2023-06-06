@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.reeverse.gseven.model.Student;
-import com.reeverse.gseven.service.UserServiceImpl;
+import com.reeverse.gseven.model.dto.Student;
+import com.reeverse.gseven.model.service.StudentService;
 
 @Controller
 @RequestMapping("/resetPasswordProcess")
 public class ResetPasswordProcessController {
 	
 	@Autowired
-	private UserServiceImpl userService;
+	private StudentService studentService;
 	
 	
 	@GetMapping("/{pswtoken}")
@@ -34,11 +34,10 @@ public class ResetPasswordProcessController {
 	@PostMapping("/{pswtoken}")
 	public String resetPasswordProcess(@PathVariable("pswtoken") String pswtoken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
 		
-		Student existingUser = null;
-		existingUser = userService.findByPasswordToken(pswtoken);
+		 Student student = studentService.findByPasswordToken(pswtoken);
 		
 		
-		if(!existingUser.isEnabled())
+		if(!student.isEnabled())
 			result.rejectValue("email", null, "Invalid Email or Email not Enabled");
 		
 		if(result.hasErrors()) {
@@ -46,8 +45,7 @@ public class ResetPasswordProcessController {
 		}
 		
 		//Se va tutto a buon fine salviamo la password
-		userService.updatePassword(existingUser, newPassword);
-		
+		studentService.updatePassword(student, newPassword);
 		
 		return "redirect:/login";
 	}
