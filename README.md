@@ -25,3 +25,5 @@ L'applicazione di autenticazione è stata progettata utilizzando il pattern arch
 ## [Filesystem](https://github.com/Testing-Game-SAD-2023/T23-G7/wiki/Documentazione-Filesystem)
 
 ## [Riferimento API](https://github.com/Testing-Game-SAD-2023/T23-G7/wiki/API)
+
+## [Tecnologie utilizzate](https://github.com/Testing-Game-SAD-2023/T23-G7/wiki/Tecnologie-utilizzate)
