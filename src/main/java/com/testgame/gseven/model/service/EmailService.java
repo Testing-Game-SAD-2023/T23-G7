@@ -1,4 +1,4 @@
-package com.reeverse.gseven.model.service;
+package com.testgame.gseven.model.service;
 
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.MailException;

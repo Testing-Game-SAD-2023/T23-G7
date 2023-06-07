@@ -1,4 +1,4 @@
-package com.reeverse.gseven.model.dto;
+package com.testgame.gseven.model.dto;
 
 import java.util.ArrayList;
 import java.util.List;

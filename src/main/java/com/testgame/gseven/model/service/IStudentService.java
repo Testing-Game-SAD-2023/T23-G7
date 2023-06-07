@@ -1,6 +1,6 @@
-package com.reeverse.gseven.model.service;
+package com.testgame.gseven.model.service;
 
-import com.reeverse.gseven.model.dto.Student;
+import com.testgame.gseven.model.dto.Student;
 
 public interface IStudentService {
 

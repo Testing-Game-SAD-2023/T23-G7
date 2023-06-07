@@ -1,8 +1,8 @@
-package com.reeverse.gseven.model.dao;
+package com.testgame.gseven.model.dao;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.reeverse.gseven.model.dto.Student;
+import com.testgame.gseven.model.dto.Student;
 
 public interface IStudentDAO extends MongoRepository<Student,String>{
 

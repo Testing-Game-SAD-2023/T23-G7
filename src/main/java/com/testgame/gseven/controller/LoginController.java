@@ -1,4 +1,4 @@
-package com.reeverse.gseven.controller;
+package com.testgame.gseven.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

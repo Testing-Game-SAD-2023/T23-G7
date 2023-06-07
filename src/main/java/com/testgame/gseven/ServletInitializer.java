@@ -1,4 +1,4 @@
-package com.reeverse.gseven;
+package com.testgame.gseven;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

@@ -1,4 +1,4 @@
-package com.reeverse.gseven.model.service;
+package com.testgame.gseven.model.service;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -11,10 +11,10 @@ import org.springframework.mail.MailSendException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.reeverse.gseven.model.dao.IRoleDAO;
-import com.reeverse.gseven.model.dao.IStudentDAO;
-import com.reeverse.gseven.model.dto.Role;
-import com.reeverse.gseven.model.dto.Student;
+import com.testgame.gseven.model.dao.IRoleDAO;
+import com.testgame.gseven.model.dao.IStudentDAO;
+import com.testgame.gseven.model.dto.Role;
+import com.testgame.gseven.model.dto.Student;
 
 @Service
 public class StudentService implements IStudentService {

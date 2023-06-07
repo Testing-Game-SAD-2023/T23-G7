@@ -1,4 +1,4 @@
-package com.reeverse.gseven.controller;
+package com.testgame.gseven.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.reeverse.gseven.model.dto.Student;
-import com.reeverse.gseven.model.service.StudentService;
+import com.testgame.gseven.model.dto.Student;
+import com.testgame.gseven.model.service.StudentService;
 
 @Controller
 public class ResetPasswordController {

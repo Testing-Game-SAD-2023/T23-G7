@@ -1,4 +1,4 @@
-package com.reeverse.gseven.model.dto;
+package com.testgame.gseven.model.dto;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;

@@ -1,4 +1,4 @@
-package com.reeverse.gseven.model.service;
+package com.testgame.gseven.model.service;
 
 
 import java.util.Collection;
@@ -14,9 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.reeverse.gseven.model.dto.Role;
-import com.reeverse.gseven.model.dto.Student;
-import com.reeverse.gseven.model.dao.IStudentDAO;
+import com.testgame.gseven.model.dao.IStudentDAO;
+import com.testgame.gseven.model.dto.Role;
+import com.testgame.gseven.model.dto.Student;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
