@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailAuthenticationException;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailParseException;
+import org.springframework.mail.MailSendException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +43,8 @@ public class StudentService implements IStudentService {
 	 * @throws StudentAlreadyRegisteredException 
 	 * */
 	@Override
-	public void registerStudent(Student studentForm) throws StudentAlreadyRegisteredException{
+	public void registerStudent(Student studentForm) throws MailParseException, MailAuthenticationException,
+														MailSendException, MailException, StudentAlreadyRegisteredException{
 		
 		boolean isRegistered = findInfoService.isStudentRegistered(studentForm.getEmail());
 		if(isRegistered) {
