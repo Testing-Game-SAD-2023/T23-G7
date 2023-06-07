@@ -14,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.testgame.gseven.model.service.CustomUserDetailsService;
 
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

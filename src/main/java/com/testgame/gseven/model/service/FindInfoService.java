@@ -1,7 +1,5 @@
 package com.testgame.gseven.model.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +32,7 @@ public class FindInfoService {
 	}
 	
 	public Student getStudentById(String id) {
-		Optional<Student> studentBuff = studentRepository.findById(id);
-		Student student = studentBuff.get();
-		return student;
-		
+		return studentRepository.findById(id).get();
 	}
 	/** Cerca nella base dati lo studente con l'email fornita in ingresso
 	 * e restituisce true se viene trovato, false altrimenti.

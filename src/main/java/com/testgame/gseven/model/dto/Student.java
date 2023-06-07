@@ -3,26 +3,70 @@ package com.testgame.gseven.model.dto;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 
 @Document (collection = "students")
 public class Student {
 	
 	@Id
+	@NotNull
+    @NotBlank
+    @NotEmpty
 	private String id;
 	private String confirmationToken;
 	private String passwordToken;
     private boolean enabled;
     
+
+    @NotNull
+    @NotBlank
+    @NotEmpty
 	private String name;
+    
+    @NotNull
+    @NotBlank
+    @NotEmpty
 	private String surname;
-	private String gender;
-	private String nationality;
-	private String studyTitle;
-	private String dateOfBirth;
-	private String email;
-	private String password;
-	private List<Role> roles = new ArrayList<>();
+    
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String gender;
+	
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String nationality;
+	
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String studyTitle;
+	
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String dateOfBirth;
+	
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String email;
+	
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private String password;
+	
+    @NotNull
+    @NotBlank
+    @NotEmpty
+    private List<Role> roles = new ArrayList<>();
 	
 	
 	public String getId() {
@@ -120,7 +164,6 @@ public class Student {
 		this.roles = roles;
 	}
 	public Student() {
-		// TODO Auto-generated constructor stub
 	}
 
 }
