@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.utility.exceptions.StudentAlreadyRegisteredException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -43,8 +44,8 @@ public class RegistrationController {
 	}
 	
 	@PostMapping("/registration")
-	public String registration(@ModelAttribute("student") Student studentForm, BindingResult result, Model model) {
-		
+	public String registration(@ModelAttribute("student") Student studentForm) {
+		/*
 		Student student = studentService.findUserByEmail(studentForm.getEmail());
 		
 		if(student != null)
@@ -54,8 +55,12 @@ public class RegistrationController {
 			model.addAttribute("student", student);
 			return "/registration";
 		}
-        
-		studentService.saveStudent(studentForm);
+        */
+		try {
+			studentService.registerStudent(studentForm);
+		} catch (StudentAlreadyRegisteredException e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:/login";
 	}

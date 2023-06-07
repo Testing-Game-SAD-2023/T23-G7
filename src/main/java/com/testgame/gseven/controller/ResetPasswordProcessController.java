@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.testgame.gseven.model.dto.Student;
+import com.testgame.gseven.model.service.FindInfoService;
 import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
 
 @Controller
 @RequestMapping("/resetPasswordProcess")
@@ -20,6 +22,8 @@ public class ResetPasswordProcessController {
 	@Autowired
 	private StudentService studentService;
 	
+	@Autowired
+	private FindInfoService findInfoService;
 	
 	@GetMapping("/{pswtoken}")
 	public String getResetPasswordProcess(@PathVariable("pswtoken") String pswtoken) {
@@ -34,8 +38,7 @@ public class ResetPasswordProcessController {
 	@PostMapping("/{pswtoken}")
 	public String resetPasswordProcess(@PathVariable("pswtoken") String pswtoken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
 		
-		 Student student = studentService.findByPasswordToken(pswtoken);
-		
+		Student student = findInfoService.getStudentByPasswordToken(pswtoken);
 		
 		if(!student.isEnabled())
 			result.rejectValue("email", null, "Invalid Email or Email not Enabled");
@@ -45,7 +48,11 @@ public class ResetPasswordProcessController {
 		}
 		
 		//Se va tutto a buon fine salviamo la password
-		studentService.updatePassword(student, newPassword);
+		try {
+			studentService.changePassword(pswtoken, newPassword);
+		} catch (PasswordTokenNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:/login";
 	}

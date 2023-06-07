@@ -23,6 +23,8 @@ public class Student {
 	private String email;
 	private String password;
 	private List<Role> roles = new ArrayList<>();
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -83,11 +85,11 @@ public class Student {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	public String getVerificationCode() {
+	public String getConfirmationToken() {
 		return confirmationToken;
 	}
-	public void setVerificationCode(String verificationCode) {
-		this.confirmationToken = verificationCode;
+	public void setConfirmationToken(String confirmationToken) {
+		this.confirmationToken = confirmationToken;
 	}
 	public boolean isEnabled() {
 		return enabled;
@@ -113,8 +115,8 @@ public class Student {
 		this.dateOfBirth = dateOfBirth;
 		this.email = email;
 		this.password = password;
-		this.confirmationToken=confirmationToken;
-		this.enabled=enabled;
+		this.confirmationToken = confirmationToken;
+		this.enabled = enabled;
 		this.roles = roles;
 	}
 	public Student() {

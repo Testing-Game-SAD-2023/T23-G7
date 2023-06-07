@@ -9,4 +9,7 @@ public interface IStudentDAO extends MongoRepository<Student,String>{
 	Student findByEmail(String email);
 	Student findByConfirmationToken(String confirmationToken);
 	Student findByPasswordToken(String passwordToken);
+	boolean existsByEmail(String email);
+	boolean existsByPasswordToken(String passwordToken);
+	boolean existsByConfirmationToken(String confirmationToken);
 }

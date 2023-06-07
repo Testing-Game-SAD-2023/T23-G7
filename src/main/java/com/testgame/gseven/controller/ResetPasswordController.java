@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.testgame.gseven.model.dto.Student;
+import com.testgame.gseven.model.service.FindInfoService;
 import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 
 @Controller
 public class ResetPasswordController {
+	
+	@Autowired
+	private FindInfoService findInfoService;
 	
 	@Autowired
 	private StudentService studentService;
@@ -27,7 +32,8 @@ public class ResetPasswordController {
 	@PostMapping("/resetPassword")
 	public String resetPassword(@ModelAttribute("email") String email, BindingResult result, Model model) {
 		
-		Student student = studentService.findUserByEmail(email);
+		
+		Student student = findInfoService.getStudentByEmail(email);
 		
 		if(student == null || student.isEnabled()==false) {
 			return "wrongUser";
@@ -39,7 +45,11 @@ public class ResetPasswordController {
 		}
 		
 		//Se va tutto a buon fine salviamo la password
-		studentService.beginChangePassword(student);
+		try {
+			studentService.sendEmailChangePassword(email);
+		} catch (StudentNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:/login";
 	}
