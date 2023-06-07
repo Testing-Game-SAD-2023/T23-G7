@@ -37,6 +37,7 @@ public class SecurityConfig {
                                 .requestMatchers("/confirm").permitAll()
                                 .requestMatchers("/resetPassword").permitAll()
                                 .requestMatchers("/resetPasswordProcess").permitAll()
+                                .requestMatchers("/logout").permitAll()
                                 .requestMatchers("/dashboard").hasAuthority("STUDENTE")
                                 .anyRequest().permitAll()
                                 
@@ -48,7 +49,12 @@ public class SecurityConfig {
                                 .usernameParameter("email")
                                 .passwordParameter("password")
                                 .permitAll()
-                );
+                )
+       			.logout((logout) -> logout
+       							.logoutUrl("/logout")
+       							.logoutSuccessUrl("/login")
+       							.permitAll())
+       			.exceptionHandling(handling -> handling.accessDeniedPage("/access-denied"));
        return http.build();
 	}
 	

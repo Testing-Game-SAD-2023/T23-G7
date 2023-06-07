@@ -53,10 +53,11 @@
       <h1>Il Mio Profilo</h1>
     </header>
     <section>
-      <p>Benvenuto, <strong></strong>!</p>
-      <p>Punteggio: <strong></strong></p>
+      <p>Benvenuto, <strong> <span sec:authentication="principal.username"/> </strong>!</p>
+      <p>Punteggio: <strong> 0 pt</strong></p>
       <button onclick="visualizzaStorico()">Visualizza Storico Partite</button>
       <button onclick="partecipaGioco()">Partecipa al Gioco</button>
+      <div class="mt-5"><a class="link-primary" th:href="@{/logout}" >Logout</a></div>
     </section>
     <script>
       function visualizzaStorico() {
