@@ -22,7 +22,6 @@ public class ConfirmationController {
     public String confirmEmail(@PathVariable("token") String token) {
         
 		Student student = findInfoService.getStudentByConfirmationToken(token);
-
         if (student != null) {
         	try {
         		utilityService.enableStudent(token);

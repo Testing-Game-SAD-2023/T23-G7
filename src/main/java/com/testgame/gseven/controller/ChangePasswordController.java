@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.ChangePasswordService;
 import com.testgame.gseven.model.service.FindInfoService;
-import com.testgame.gseven.model.service.UtilityService;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 
 @Controller
