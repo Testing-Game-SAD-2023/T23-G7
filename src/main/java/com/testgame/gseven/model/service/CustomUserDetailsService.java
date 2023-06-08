@@ -27,7 +27,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public CustomUserDetailsService(IStudentDAO userRepository) {
 		this.userRepository = userRepository;
 	}
-
+	
+	/*Metodo che carica lo User a partire dalla sua username che viene
+	 * passata come parametro di ingresso
+	 * 
+	 * @param email parametro di tipo {@code String} che permette di cercare sulla base dati
+	 * lo studente attraverso la sua email.
+	 * 
+	 * @return Ritorna l'ogetto UserDetails
+	 * 
+	 * @throws UsernameNotFoundException eccezione restituita quando l'email fornita in ingresso	
+	 *	non corrisponde a nessuno studente nella base dati
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
 	
