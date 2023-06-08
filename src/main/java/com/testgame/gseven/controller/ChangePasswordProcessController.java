@@ -15,8 +15,8 @@ import com.testgame.gseven.model.service.StudentService;
 import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
 
 @Controller
-@RequestMapping("/resetPasswordProcess")
-public class ResetPasswordProcessController {
+@RequestMapping("/changePasswordProcess")
+public class ChangePasswordProcessController {
 	
 	@Autowired
 	private StudentService studentService;
@@ -25,17 +25,17 @@ public class ResetPasswordProcessController {
 	private FindInfoService findInfoService;
 	
 	@GetMapping("/{pswtoken}")
-	public String getResetPasswordProcess(@PathVariable("pswtoken") String pswtoken) {
+	public String getChangePasswordProcess(@PathVariable("pswtoken") String pswtoken) {
 		
 		if(pswtoken.isEmpty())
 			return "redirect:/login"; 
 		
-		return "/resetPasswordProcess";
+		return "/changePasswordProcess";
 	
 	}
 	
 	@PostMapping("/{pswtoken}")
-	public String resetPasswordProcess(@PathVariable("pswtoken") String pswtoken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
+	public String changePasswordProcess(@PathVariable("pswtoken") String pswtoken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
 		
 		Student student = findInfoService.getStudentByPasswordToken(pswtoken);
 		
@@ -43,7 +43,7 @@ public class ResetPasswordProcessController {
 			result.rejectValue("email", null, "Invalid Email or Email not Enabled");
 		
 		if(result.hasErrors()) {
-			return "/resetPassword";
+			return "/changePassword";
 		}
 		
 		try {

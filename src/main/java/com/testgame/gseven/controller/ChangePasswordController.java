@@ -13,7 +13,7 @@ import com.testgame.gseven.model.service.StudentService;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 
 @Controller
-public class ResetPasswordController {
+public class ChangePasswordController {
 	
 	@Autowired
 	private FindInfoService findInfoService;
@@ -22,14 +22,14 @@ public class ResetPasswordController {
 	private StudentService studentService;
 	
 
-	@GetMapping("/resetPassword")
-	public String resetPasswordForm() {
-		return "resetPassword";
+	@GetMapping("/changePassword")
+	public String changePasswordForm() {
+		return "changePassword";
 	}
 	
 	
-	@PostMapping("/resetPassword")
-	public String resetPassword(@ModelAttribute("email") String email, BindingResult result, Model model) {
+	@PostMapping("/changePassword")
+	public String changePassword(@ModelAttribute("email") String email, BindingResult result, Model model) {
 		
 		
 		Student student = findInfoService.getStudentByEmail(email);
@@ -39,11 +39,11 @@ public class ResetPasswordController {
 		}
 		
 		if(result.hasErrors()) {
-			return "/resetPassword";
+			return "/changePassword";
 		}
 		
 		try {
-			studentService.sendEmailChangePassword(email);
+			studentService.sendEmailChangePassword(email,"/changePasswordProcess/");
 		} catch (StudentNotFoundException e) {
 			e.printStackTrace();
 		}

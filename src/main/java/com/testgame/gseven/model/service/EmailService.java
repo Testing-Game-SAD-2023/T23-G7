@@ -1,5 +1,6 @@
 package com.testgame.gseven.model.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailParseException;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-
+	@Autowired
 	private final JavaMailSender javaMailSender;
 	
 	
@@ -19,10 +20,10 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-	public void sendEmailResetPassword(String email, String siteURL, String passwordToken) {
+	public void sendEmailResetPassword(String email, String siteURL,String URLpath ,String passwordToken) {
 		String subject = "Cambio password";
 		String body = "Clicca sul seguente link per cambiare la tua password: " +
-				siteURL+ "/resetPasswordProcess/" + passwordToken;
+				siteURL+ URLpath + passwordToken;
 		sendEmail(email, subject, body);
 	}
 	

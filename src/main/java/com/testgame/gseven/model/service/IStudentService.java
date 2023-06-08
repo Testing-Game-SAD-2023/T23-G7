@@ -12,6 +12,6 @@ public interface IStudentService {
 	void registerStudent(Student student) throws StudentAlreadyRegisteredException;
 	void changePassword(String email, String newPassword) throws PasswordTokenNotFoundException;
 	void enableStudent(String confirmationToken) throws ConfirmationTokenNotFoundException;
-	void sendEmailChangePassword(String email) throws StudentNotFoundException;
+	void sendEmailChangePassword(String email,String ULRpath) throws StudentNotFoundException;
 }
 	

@@ -173,7 +173,9 @@
 	<div id="form_left">
             <h1><font color="orange">Student Login<font color="black"></h1>
             <div th:if="${param.error}">
-                <div class="alert alert-danger"><strong> Invalid Email or Password !!! </strong></div>
+                <div class="alert alert-danger"><strong> Invalid Email or Password!!! If
+
+                    you are not signed up yet, please register first! </strong></div>
 				
             </div>
             <div th:if="${param.logout}">
@@ -215,7 +217,7 @@
 				/>
 				<br>
 				<br>
-				<span> <a th:href="@{/resetPassword}">Forgot Password?</a></span>
+				<span> <a th:href="@{/changePassword}">Forgot Password?</a></span>
 				<span id="create_account">
 				<a th:href="@{/registration}">Create New Account</a>
 				<br>

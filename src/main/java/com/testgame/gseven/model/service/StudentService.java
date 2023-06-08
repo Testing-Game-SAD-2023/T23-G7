@@ -83,7 +83,7 @@ public class StudentService implements IStudentService {
 	}
 	
 	@Override
-	public void sendEmailChangePassword(String email) throws StudentNotFoundException {
+	public void sendEmailChangePassword(String email, String URLpath) throws StudentNotFoundException {
 		String passwordToken = UUID.randomUUID().toString();
 		
 		boolean isRegistered = findInfoService.isStudentRegistered(email);
@@ -94,7 +94,7 @@ public class StudentService implements IStudentService {
 		Student student = studentRepository.findByEmail(email);
 		student.setPasswordToken(passwordToken);
 		studentRepository.save(student);
-		emailService.sendEmailResetPassword(email, "localhost:8080", passwordToken);
+		emailService.sendEmailResetPassword(email, "localhost:8080", URLpath ,passwordToken);
 	}
 	
 	@Override

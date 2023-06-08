@@ -45,7 +45,7 @@
         
         function countdown() {
             var countdownElement = document.getElementById("countdown");
-            countdownElement.innerHTML = secondsLeft + " secondi";
+            countdownElement.innerHTML = secondsLeft + " seconds";
             
             if (secondsLeft > 0) {
                 secondsLeft--;
@@ -61,8 +61,8 @@
 <body>
     <div class="container">
         <h1>Avviso Utente</h1>
-        <p class="warning">Attenzione: non sei registrato o il tuo account non è stato ancora verificato.</p>
-        <p>Per favore, registrati o controlla la tua casella postale per validare il tuo account.</p>
+        <p class="warning">Warning: you are not registered or your account has not yet been verified.</p>
+        <p>Please register or check your mailbox to validate your account.</p>
         <p class="countdown" id="countdown"></p>
     </div>
 </body>
