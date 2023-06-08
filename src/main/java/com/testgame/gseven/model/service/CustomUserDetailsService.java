@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 		Student studentUser = userRepository.findByEmail(email);
 		
-		if(studentUser != null) {
+		if(studentUser != null && studentUser.isEnabled()) {
 			return new User(studentUser.getEmail(), studentUser.getPassword(),
 								mapRolesToAuthorities(studentUser.getRoles()));
 		}else {
