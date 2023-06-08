@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.testgame.gseven.model.dto.Student;
+import com.testgame.gseven.model.service.ChangePasswordService;
 import com.testgame.gseven.model.service.FindInfoService;
-import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.model.service.UtilityService;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 
 @Controller
@@ -19,7 +20,7 @@ public class ChangePasswordController {
 	private FindInfoService findInfoService;
 	
 	@Autowired
-	private StudentService studentService;
+	private ChangePasswordService changepasswordService;
 	
 
 	@GetMapping("/changePassword")
@@ -43,7 +44,7 @@ public class ChangePasswordController {
 		}
 		
 		try {
-			studentService.sendEmailChangePassword(email,"/changePasswordProcess/");
+			changepasswordService.sendEmailChangePassword(email,"/changePasswordProcess/");
 		} catch (StudentNotFoundException e) {
 			e.printStackTrace();
 		}

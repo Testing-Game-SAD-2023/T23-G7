@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.testgame.gseven.model.dto.Student;
-import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.model.service.RegistrationService;
+import com.testgame.gseven.model.service.UtilityService;
 import com.testgame.gseven.utility.exceptions.StudentAlreadyRegisteredException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class RegistrationController {
 
 	@Autowired
-	private StudentService studentService;
+	private RegistrationService registrationService;
 	
 	@GetMapping("/logout")
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
@@ -42,7 +43,7 @@ public class RegistrationController {
 	@PostMapping("/registration")
 	public String registration(@ModelAttribute("student") Student studentForm) {
 		try {
-			studentService.registerStudent(studentForm);
+			registrationService.registerStudent(studentForm);
 		} catch (StudentAlreadyRegisteredException e) {
 			e.printStackTrace();
 		}

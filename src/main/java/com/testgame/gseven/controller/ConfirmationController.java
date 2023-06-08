@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.FindInfoService;
-import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.model.service.UtilityService;
 import com.testgame.gseven.utility.exceptions.ConfirmationTokenNotFoundException;
 
 @Controller
 public class ConfirmationController {
 	
 	@Autowired
-	private StudentService studentService;
+	private UtilityService utilityService;
 	
 	@Autowired
 	private FindInfoService findInfoService;
@@ -25,7 +25,7 @@ public class ConfirmationController {
 
         if (student != null) {
         	try {
-				studentService.enableStudent(token);
+        		utilityService.enableStudent(token);
 			} catch (ConfirmationTokenNotFoundException e) {
 				e.printStackTrace();
 			}

@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.model.service.UtilityService;
 
 @SpringBootApplication
 public class StudentServiceTest {
 
 	@MockBean
-	private StudentService studentService;
+	private UtilityService studentService;
 	
 	@Test
 	void StudentServiceTest1() {

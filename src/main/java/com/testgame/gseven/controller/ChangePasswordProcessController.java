@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.testgame.gseven.model.dto.Student;
+import com.testgame.gseven.model.service.ChangePasswordService;
 import com.testgame.gseven.model.service.FindInfoService;
-import com.testgame.gseven.model.service.StudentService;
+import com.testgame.gseven.model.service.UtilityService;
 import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
 
 @Controller
@@ -19,7 +20,7 @@ import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
 public class ChangePasswordProcessController {
 	
 	@Autowired
-	private StudentService studentService;
+	private ChangePasswordService changepasswordService;
 	
 	@Autowired
 	private FindInfoService findInfoService;
@@ -47,7 +48,7 @@ public class ChangePasswordProcessController {
 		}
 		
 		try {
-			studentService.changePassword(pswtoken, newPassword);
+			changepasswordService.changePassword(pswtoken, newPassword);
 		} catch (PasswordTokenNotFoundException e) {
 			e.printStackTrace();
 		}
