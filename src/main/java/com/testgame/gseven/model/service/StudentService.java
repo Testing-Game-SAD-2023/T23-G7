@@ -101,7 +101,7 @@ public class StudentService implements IStudentService {
 	 * sulla base dati e inviata tramite email allo studente.
 	 * @param email parametro di tipo {@code String} che permette di cercare sulla base dati lo studente e inviare il token
 	 * 				da cliccare.
-	 * @eturn		Non ritorna valori. Eventuali errori che possono presentarsi,
+	 * @return		Non ritorna valori. Eventuali errori che possono presentarsi,
 	 * 				sono eccezioni che devono che devono essere opportunamente gestite con try-catch.
 	 * @throws StudentNotFoundException eccezione restituita quando l'email fornita in ingresso	
 	 *									non corrisponde a nessuno studente nella base dati. 
