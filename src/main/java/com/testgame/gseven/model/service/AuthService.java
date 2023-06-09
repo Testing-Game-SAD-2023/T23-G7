@@ -8,7 +8,15 @@ import com.testgame.gseven.model.service.interfaces.IAuthService;
 
 @Service
 public class AuthService implements IAuthService{
-
+	
+	/* Metodo che permette di ricavare l'ID dello studente registrato
+	 * 
+	 * @param None
+	 * 
+	 * @return Il metodo ritorna un valore di tipo {@code String} che rappresetna l'ID univoco associato 
+	 * all'utente registrato. 
+	 * 
+	 */
 	@Override
 	public String getStudentId() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
