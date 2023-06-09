@@ -15,14 +15,10 @@ public class StudentDetails extends User{
 		super(student.getEmail(), student.getPassword(), student.isEnabled(), true, true, true, mapRolesToAuthorities(student));
 		studentId = student.getId();
 	}
-
-	
 			
 	private static Collection<GrantedAuthority> mapRolesToAuthorities(Student student){
 		return student.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
-
-
 
 	public String getStudentId() {
 		return studentId;

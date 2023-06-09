@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.ChangePasswordService;
 import com.testgame.gseven.model.service.FindInfoService;
 import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
@@ -19,39 +18,37 @@ import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
 public class ChangePasswordProcessController {
 	
 	@Autowired
-	private ChangePasswordService changepasswordService;
+	private ChangePasswordService changePasswordService;
 	
 	@Autowired
 	private FindInfoService findInfoService;
 	
+	@GetMapping({"", "/" })
+	public String errorPasswordProcess() {
+		return "redirect:/login"; 
+	}
+	
 	@GetMapping("/{pswtoken}")
 	public String getChangePasswordProcess(@PathVariable("pswtoken") String pswtoken) {
-		
 		if(pswtoken.isEmpty())
-			return "redirect:/login"; 
+			return "redirect:/login";
 		
+		boolean isPasswordTokenFound = findInfoService.doesPasswordTokenExists(pswtoken);
+		if(!isPasswordTokenFound) {
+			return "redirect:/login";
+		}
 		return "/changePasswordProcess";
-	
 	}
 	
 	@PostMapping("/{pswtoken}")
 	public String changePasswordProcess(@PathVariable("pswtoken") String pswtoken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
 		
-		Student student = findInfoService.getStudentByPasswordToken(pswtoken);
-		
-		if(!student.isEnabled())
-			result.rejectValue("email", null, "Invalid Email or Email not Enabled");
-		
-		if(result.hasErrors()) {
-			return "/changePassword";
-		}
-		
 		try {
-			changepasswordService.changePassword(pswtoken, newPassword);
+			changePasswordService.changePassword(pswtoken, newPassword);
 		} catch (PasswordTokenNotFoundException e) {
-			e.printStackTrace();
-		}
-		
+			result.rejectValue("email", null, "Invalid Email");
+			return "/changePassword";
+		}		
 		return "redirect:/login";
 	}
 	

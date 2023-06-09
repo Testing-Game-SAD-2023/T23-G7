@@ -1,5 +1,7 @@
 package com.testgame.gseven.model.service;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,14 @@ public class AuthService implements IAuthService{
 			return ((StudentDetails)principal).getStudentId();
 		}
 		return null;
+	}
+	
+	@Override
+	public boolean isStudentAuthenticated(Authentication authentication) {
+		authentication = SecurityContextHolder.getContext().getAuthentication();
+	    if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+	        return false;
+	    }
+	    return true;
 	}
 }

@@ -34,12 +34,7 @@ public class FindInfoService {
 	 * 												cercandolo tramite il confirmationToken
 	 *  */
 	public Student getStudentByConfirmationToken(String token) throws ConfirmationTokenNotFoundException {
-		Student student = studentRepository.findByConfirmationToken(token);
-		if(student != null) {
-			return student;
-		}else {
-			 throw new ConfirmationTokenNotFoundException();
-		}
+		return studentRepository.findByConfirmationToken(token);
 	}
 	
 	/** Cerca nella base dati lo studente con il token della password
