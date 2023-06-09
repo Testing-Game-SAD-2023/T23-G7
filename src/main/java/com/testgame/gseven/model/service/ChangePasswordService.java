@@ -45,7 +45,7 @@ public class ChangePasswordService implements IChangePasswordService{
 	 * */
 	@Override
 	public void beginChangePassword(String email, String URLsite, String URLpath) throws StudentNotFoundException, StudentNotEnabledException {
-		String passwordToken = UUID.randomUUID().toString();
+		
 		
 		boolean isRegistered = findInfoService.isStudentRegistered(email);
 		
@@ -59,9 +59,10 @@ public class ChangePasswordService implements IChangePasswordService{
 			throw new StudentNotEnabledException();
 		}
 		
+		String passwordToken = UUID.randomUUID().toString();
 		student.setPasswordToken(passwordToken);
 		studentRepository.save(student);
-		emailService.sendEmailResetPassword(email, URLsite, URLpath ,passwordToken);
+		emailService.sendEmailResetPassword(email, URLsite, URLpath, passwordToken);
 	}
 	
 	/** Metodo che permette di effettuare il salvataggio della nuova password sulla base dati.

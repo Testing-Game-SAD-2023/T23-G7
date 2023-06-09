@@ -40,11 +40,11 @@ public class ChangePasswordProcessController {
 		return "changePasswordProcess";
 	}
 	
-	@PostMapping("/{pswtoken}")
-	public String changePasswordProcess(@PathVariable("pswtoken") String pswtoken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
+	@PostMapping("/{passwordToken}")
+	public String changePasswordProcess(@PathVariable("passwordToken") String passwordToken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
 		
 		try {
-			changePasswordService.changePassword(pswtoken, newPassword);
+			changePasswordService.changePassword(passwordToken, newPassword);
 		} catch (PasswordTokenNotFoundException e) {
 			result.rejectValue("email", null, "Invalid Email");
 			return "/changePassword";

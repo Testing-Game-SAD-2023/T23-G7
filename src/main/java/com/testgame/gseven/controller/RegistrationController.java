@@ -26,8 +26,9 @@ public class RegistrationController {
 	
 	@PostMapping("/registration")
 	public String registration(@ModelAttribute("student") Student studentForm) {
+		
 		try {
-			registrationService.registerStudent(studentForm);
+			registrationService.registerStudent(studentForm, "localhost:8080");
 		} catch (StudentAlreadyRegisteredException e) {
 			e.printStackTrace();
 		}

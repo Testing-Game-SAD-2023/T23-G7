@@ -16,13 +16,11 @@ public class ChangePasswordController {
 	
 	@Autowired
 	private ChangePasswordService changePasswordService;
-	
 
 	@GetMapping("/changePassword")
 	public String changePasswordForm() {
 		return "changePassword";
 	}
-	
 	
 	@PostMapping("/changePassword")
 	public String changePassword(@ModelAttribute("email") String email, BindingResult result, Model model) {
