@@ -16,6 +16,8 @@ import com.testgame.gseven.model.dao.IStudentDAO;
 import com.testgame.gseven.model.dto.Role;
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.interfaces.IRegistrationService;
+import com.testgame.gseven.model.service.utils.EmailService;
+import com.testgame.gseven.model.service.utils.FindInfoService;
 import com.testgame.gseven.utility.exceptions.StudentAlreadyRegisteredException;
 @Service
 public class RegistrationService implements IRegistrationService{

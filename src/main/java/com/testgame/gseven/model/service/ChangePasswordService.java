@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.testgame.gseven.model.dao.IStudentDAO;
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.interfaces.IChangePasswordService;
+import com.testgame.gseven.model.service.utils.EmailService;
+import com.testgame.gseven.model.service.utils.FindInfoService;
 import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
 import com.testgame.gseven.utility.exceptions.StudentNotEnabledException;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;

@@ -1,4 +1,4 @@
-package com.testgame.gseven.model.service;
+package com.testgame.gseven.model.service.utils;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

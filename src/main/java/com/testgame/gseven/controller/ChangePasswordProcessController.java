@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.testgame.gseven.model.service.ChangePasswordService;
-import com.testgame.gseven.model.service.FindInfoService;
+import com.testgame.gseven.model.service.utils.FindInfoService;
 import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
 
 @Controller
