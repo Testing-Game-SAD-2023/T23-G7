@@ -37,7 +37,7 @@ public class ChangePasswordProcessController {
 		if(!isPasswordTokenFound) {
 			return "redirect:/login";
 		}
-		return "/changePasswordProcess";
+		return "changePasswordProcess";
 	}
 	
 	@PostMapping("/{pswtoken}")
