@@ -7,17 +7,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.ChangePasswordService;
-import com.testgame.gseven.model.service.FindInfoService;
 import com.testgame.gseven.utility.exceptions.StudentNotEnabledException;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 
 @Controller
 public class ChangePasswordController {
-	
-	@Autowired
-	private FindInfoService findInfoService;
 	
 	@Autowired
 	private ChangePasswordService changePasswordService;
