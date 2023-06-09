@@ -10,6 +10,7 @@ import com.testgame.gseven.model.dao.IStudentDAO;
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.interfaces.IChangePasswordService;
 import com.testgame.gseven.utility.exceptions.PasswordTokenNotFoundException;
+import com.testgame.gseven.utility.exceptions.StudentNotEnabledException;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 @Service
 public class ChangePasswordService implements IChangePasswordService{
@@ -31,24 +32,34 @@ public class ChangePasswordService implements IChangePasswordService{
 	 * sulla base dati e inviata tramite email allo studente.
 	 * @param email parametro di tipo {@code String} che permette di cercare sulla base dati lo studente e inviare il token
 	 * 				da cliccare.
+	 * @param	URLsite url del sito su cui utilizzare il servizio (es. www.miosito.it)
+	 * @param	URLpath	url del percorso che verrà concatenato con URLsite per creare la pagina di procedura di cambio password. (es.  "/changePasswordProcess/").
 	 * @return		Non ritorna valori. Eventuali errori che possono presentarsi,
 	 * 				sono eccezioni che devono che devono essere opportunamente gestite con try-catch.
 	 * @throws StudentNotFoundException eccezione restituita quando l'email fornita in ingresso	
 	 *									non corrisponde a nessuno studente nella base dati. 
+	 * @throws StudentNotEnabledException eccezione resistuita quando lo studente trovato con l'email fornita
+	 * 										in ingresso non è abilitato.
 	 * */
 	@Override
-	public void sendEmailChangePassword(String email, String URLpath) throws StudentNotFoundException {
+	public void beginChangePassword(String email, String URLsite, String URLpath) throws StudentNotFoundException, StudentNotEnabledException {
 		String passwordToken = UUID.randomUUID().toString();
 		
 		boolean isRegistered = findInfoService.isStudentRegistered(email);
+		
 		if(!isRegistered) {
 			throw new StudentNotFoundException();
 		}
 		
 		Student student = studentRepository.findByEmail(email);
+		
+		if(!student.isEnabled()) {
+			throw new StudentNotEnabledException();
+		}
+		
 		student.setPasswordToken(passwordToken);
 		studentRepository.save(student);
-		emailService.sendEmailResetPassword(email, "localhost:8080", URLpath ,passwordToken);
+		emailService.sendEmailResetPassword(email, URLsite, URLpath ,passwordToken);
 	}
 	
 	/** Metodo che permette di effettuare il salvataggio della nuova password sulla base dati.

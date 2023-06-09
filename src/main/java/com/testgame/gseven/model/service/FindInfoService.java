@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.testgame.gseven.model.dao.IStudentDAO;
 import com.testgame.gseven.model.dto.Student;
+import com.testgame.gseven.utility.exceptions.ConfirmationTokenNotFoundException;
 
 @Service
 public class FindInfoService {
@@ -29,9 +30,16 @@ public class FindInfoService {
 	 * @param token chiave di ricerca dello studente nella base dati
 	 * @return Restituisce un oggetto {@code Student} con i campi popolati se viene trovato oppure 
 	 * {@code null} se non viene trovato.
+	 * @throws ConfirmationTokenNotFoundException restituita quando nonn viene trovato lo studente sulla base dati 
+	 * 												cercandolo tramite il confirmationToken
 	 *  */
-	public Student getStudentByConfirmationToken(String token) {
-		return studentRepository.findByConfirmationToken(token);
+	public Student getStudentByConfirmationToken(String token) throws ConfirmationTokenNotFoundException {
+		Student student = studentRepository.findByConfirmationToken(token);
+		if(student != null) {
+			return student;
+		}else {
+			 throw new ConfirmationTokenNotFoundException();
+		}
 	}
 	
 	/** Cerca nella base dati lo studente con il token della password

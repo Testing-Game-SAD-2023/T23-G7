@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.ChangePasswordService;
 import com.testgame.gseven.model.service.FindInfoService;
+import com.testgame.gseven.utility.exceptions.StudentNotEnabledException;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 
 @Controller
@@ -19,7 +20,7 @@ public class ChangePasswordController {
 	private FindInfoService findInfoService;
 	
 	@Autowired
-	private ChangePasswordService changepasswordService;
+	private ChangePasswordService changePasswordService;
 	
 
 	@GetMapping("/changePassword")
@@ -31,21 +32,12 @@ public class ChangePasswordController {
 	@PostMapping("/changePassword")
 	public String changePassword(@ModelAttribute("email") String email, BindingResult result, Model model) {
 		
-		
-		Student student = findInfoService.getStudentByEmail(email);
-		
-		if(student == null || student.isEnabled()==false) {
-			return "wrongUser";
-		}
-		
-		if(result.hasErrors()) {
-			return "/changePassword";
-		}
-		
 		try {
-			changepasswordService.sendEmailChangePassword(email,"/changePasswordProcess/");
+			changePasswordService.beginChangePassword(email, "localhost:8080", "/changePasswordProcess/");
 		} catch (StudentNotFoundException e) {
-			e.printStackTrace();
+			return "wrongUser";
+		} catch (StudentNotEnabledException e) {
+			return "wrongUser";
 		}
 		
 		return "redirect:/login";

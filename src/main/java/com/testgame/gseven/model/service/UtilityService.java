@@ -18,29 +18,21 @@ public class UtilityService implements IUtilityService {
 	private IStudentDAO studentRepository;
 
 	/** Metodo che permette di abilitare il nuovo studente registrato. L'abilitazione viene effettuata
-	 * cercando nella base dati il token confirmationToken, di tipo {@code String}, e abilitare
-	 * (cambiare il valore del campi enable da {@code false} a {@code true}) lo studente associato
-	 * a quel token.
-	 * Dal controller, il token lo si può acquisire tramite l'URL o inserito tramite un apposito
+	 * passando lo studente da abilitare come parametro {@code String}. Esso verrà abilitato
+	 * settando a {code true} il campo enabled, e dopodiché salvato sulla base dati.
+	 * Uso tipico: dal controller, per ottenere lo studente si può chiamare getStudentByConfirmationToken()
+	 * e dopodiché passarlo come parametro.
 	 * {@code textbox}
 	 * 
-	 * @param confirmationToken	parametro di tipo {@code String} che funge da chiave di ricerca
-	 * 							per selezionare lo studente da abilitare.
-	 * @return  				Non ritorna valori. Eventuali errori che possono presentarsi,
-	 * 							sono eccezioni che devono che devono essere opportunamente gestite con try-catch.
-	 * @throws ConfirmationTokenNotFoundException eccezione restituita quando il token di conferma
-	 * 											 dell'identità non esiste nella base dati. 
+	 * @param student		parametro di tipo {@code Student} e rappresenta lo studente che deve essere
+	 * 						abilitato.
+	 * @return  			Non ritorna valori. Eventuali errori che possono presentarsi,
+	 * 						sono eccezioni che devono che devono essere opportunamente gestite con try-catch.
 	 * */
 	@Override
-	public void enableStudent(String confirmationToken) throws ConfirmationTokenNotFoundException {
-		boolean isConfirmationTokenFound = findInfoService.doesConfirmationTokenExists(confirmationToken);
-		if(!isConfirmationTokenFound) {
-			throw new ConfirmationTokenNotFoundException();
-		}
-		
-		Student student = studentRepository.findByConfirmationToken(confirmationToken);
+	public void enableStudent(Student student) {
 		student.setEnabled(true);
 		student.setConfirmationToken(null);
-		studentRepository.save(student);		
+		studentRepository.save(student);
 	}
 }

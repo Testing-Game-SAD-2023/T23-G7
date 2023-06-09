@@ -14,11 +14,11 @@ import com.testgame.gseven.model.dto.StudentDetails;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private IStudentDAO userRepository;
+	private IStudentDAO studentRepository;
 
 	@Autowired
-	public CustomUserDetailsService(IStudentDAO userRepository) {
-		this.userRepository = userRepository;
+	public CustomUserDetailsService(IStudentDAO studentRepository) {
+		this.studentRepository = studentRepository;
 	}
 	
 	/**Metodo che carica lo StudentDetails a partire dalla sua email, che viene
@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
 	
-		Student studentUser = userRepository.findByEmail(email);
+		Student studentUser = studentRepository.findByEmail(email);
 		
 		if(studentUser != null && studentUser.isEnabled()) {
 			return new StudentDetails(studentUser);

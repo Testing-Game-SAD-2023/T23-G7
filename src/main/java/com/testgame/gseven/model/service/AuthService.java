@@ -9,12 +9,9 @@ import com.testgame.gseven.model.service.interfaces.IAuthService;
 @Service
 public class AuthService implements IAuthService{
 	
-	/* Metodo che permette di ricavare l'ID dello studente registrato
-	 * 
-	 * @param None
-	 * 
+	/** Metodo che permette di ricavare l'ID dello studente registrato 
 	 * @return Il metodo ritorna un valore di tipo {@code String} che rappresetna l'ID univoco associato 
-	 * all'utente registrato. 
+	 * all'utente registrato, null altrimenti.
 	 * 
 	 */
 	@Override

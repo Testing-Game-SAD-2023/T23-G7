@@ -81,7 +81,7 @@ public class RegistrationService implements IRegistrationService{
 		}
 		
 		try {
-			emailService.sendVerificationEmail(studentForm.getEmail(), "localhost:8080", confirmationToken);
+			emailService.sendConfirmationEmail(studentForm.getEmail(), "localhost:8080", confirmationToken);
 		}catch(Exception ex){
 			throw ex;
 		}

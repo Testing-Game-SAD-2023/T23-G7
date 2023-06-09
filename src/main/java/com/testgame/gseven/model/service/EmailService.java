@@ -64,7 +64,7 @@ public class EmailService {
 	 * 
 	 */
 	
-	public void sendVerificationEmail(String email, String siteURL, String confirmationToken){
+	public void sendConfirmationEmail(String email, String siteURL, String confirmationToken){
 		String subject = "Conferma registrazione";
 		String body = "Clicca sul seguente link per confermare la tua registrazione: " +
 				siteURL+ "/confirm/token=" + confirmationToken;

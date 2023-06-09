@@ -21,13 +21,14 @@ public class ConfirmationController {
 	@GetMapping("/confirm/token={token}")
     public String confirmEmail(@PathVariable("token") String token) {
         
-		Student student = findInfoService.getStudentByConfirmationToken(token);
+		Student student = null;
+		try {
+			student = findInfoService.getStudentByConfirmationToken(token);
+		} catch (ConfirmationTokenNotFoundException ex) {
+			ex.printStackTrace();
+		}
         if (student != null) {
-        	try {
-        		utilityService.enableStudent(token);
-			} catch (ConfirmationTokenNotFoundException e) {
-				e.printStackTrace();
-			}
+        	utilityService.enableStudent(student);
             return "redirect:/login";
         }
         return "wrongUser";
