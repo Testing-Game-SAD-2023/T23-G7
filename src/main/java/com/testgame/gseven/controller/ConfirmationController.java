@@ -16,10 +16,10 @@ public class ConfirmationController {
 	
 	
 	@GetMapping("/confirm/token={token}")
-    public String confirmEmail(@PathVariable("token") String token) {
+    public String confirmEmail(@PathVariable("token") String confirmationToken) {
         
 		try {
-			confirmationService.confirmStudentByToken(token);
+			confirmationService.confirmStudentByToken(confirmationToken);
 		} catch (ConfirmationTokenNotFoundException e) {
 			 return "wrongUser";
 		}

@@ -17,8 +17,8 @@ public class ConfirmationService implements IConfirmationService{
 	private FindInfoService findInfoService;
 	
 	@Override
-	public void confirmStudentByToken(String token) throws ConfirmationTokenNotFoundException{
-		Student student = findInfoService.getStudentByConfirmationToken(token);
+	public void confirmStudentByToken(String confirmationToken) throws ConfirmationTokenNotFoundException{
+		Student student = findInfoService.getStudentByConfirmationToken(confirmationToken);
 		if(student == null) {
 			throw new ConfirmationTokenNotFoundException();
 		}
