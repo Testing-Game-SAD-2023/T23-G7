@@ -5,14 +5,10 @@ import org.springframework.stereotype.Service;
 import com.testgame.gseven.model.dao.IStudentDAO;
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.interfaces.IUtilityService;
-import com.testgame.gseven.utility.exceptions.ConfirmationTokenNotFoundException;
 
 @Service
 public class UtilityService implements IUtilityService {
 
-
-	@Autowired
-	private FindInfoService findInfoService;
 	
 	@Autowired
 	private IStudentDAO studentRepository;
