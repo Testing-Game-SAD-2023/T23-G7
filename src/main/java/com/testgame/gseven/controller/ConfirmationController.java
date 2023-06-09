@@ -14,6 +14,10 @@ public class ConfirmationController {
 	@Autowired
 	private ConfirmationService confirmationService;
 	
+	@GetMapping("/confirm/login")
+	public String redirectToLogin() {
+		return "/login";
+	}
 	
 	@GetMapping("/confirm/token={token}")
     public String confirmEmail(@PathVariable("token") String confirmationToken) {
