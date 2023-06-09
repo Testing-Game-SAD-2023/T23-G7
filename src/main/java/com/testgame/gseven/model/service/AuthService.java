@@ -12,9 +12,8 @@ import com.testgame.gseven.model.service.interfaces.IAuthService;
 public class AuthService implements IAuthService{
 	
 	/** Metodo che permette di ricavare l'ID dello studente registrato 
-	 * @return Il metodo ritorna un valore di tipo {@code String} che rappresetna l'ID univoco associato 
-	 * all'utente registrato, null altrimenti.
-	 * 
+	 * @return Ritorna un valore di tipo {@code String} che rappresetna l'ID univoco associato 
+	 * 			all'utente autenticato nella sessione corrente, null se non è autenticato.
 	 */
 	@Override
 	public String getStudentId() {
@@ -26,6 +25,13 @@ public class AuthService implements IAuthService{
 		return null;
 	}
 	
+	/** Metodo che restituisce {@code true} se nella sessione corrente
+	 * uno studente è autenticato. Se non è autenticato restituisce {@code false}.
+	 * @param authentication	istanza di tipo {@code Authentication} di Spring Security
+	 * 							che permette di ricavare le informazioni della sessione corrente.
+	 * @return	Se nella sessione corrente, uno studente è loggato, allora ritorna {@code true}, altrimenti
+	 * 			{@code false}.
+	 */
 	@Override
 	public boolean isStudentAuthenticated(Authentication authentication) {
 		authentication = SecurityContextHolder.getContext().getAuthentication();
