@@ -23,7 +23,7 @@ public class ChangePasswordController {
 	}
 	
 	@PostMapping("/changePassword")
-	public String changePassword(@ModelAttribute("email") String email, BindingResult result, Model model) {
+	public String changePassword(@ModelAttribute("email") String email) {
 		
 		try {
 			changePasswordService.beginChangePassword(email, "localhost:8080", "/changePasswordProcess/");
