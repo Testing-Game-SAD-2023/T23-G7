@@ -149,11 +149,11 @@ public class Student {
 		this.passwordToken = passwordToken;
 	}
 
-	public Student(String name, String surname, String sex, String nationality, String studyTitle,
+	public Student(String name, String surname, String gender, String nationality, String studyTitle,
 			String dateOfBirth, String email, String confirmationToken, boolean enabled ,String password, List<Role> roles) {
 		this.name = name;
 		this.surname = surname;
-		this.gender = sex;
+		this.gender = gender;
 		this.nationality = nationality;
 		this.studyTitle = studyTitle;
 		this.dateOfBirth = dateOfBirth;
