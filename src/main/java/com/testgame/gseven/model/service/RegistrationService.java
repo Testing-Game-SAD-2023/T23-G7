@@ -42,6 +42,7 @@ public class RegistrationService implements IRegistrationService{
 	 * 						studente sulla base dati
 	 * @param URLweb 		parametro che verrà inserito nel corpo dell'email, e funge da link di conferma per confermare
 	 * 						l'identità dello studente.
+	 * @param URLpath 
 	 * @return 				Non ritorna valori. In caso di errori, restituisce le eccezioni che devono che devono
 	 * 						essere opportunamente gestite con try-catch.
 	 * @throws StudentAlreadyRegisteredException eccezione restituita quando si tenta di salvare nella base dati uno studente
@@ -52,7 +53,7 @@ public class RegistrationService implements IRegistrationService{
 	 * @throws MailException
 	 * */
 	@Override
-	public void registerStudent(Student studentForm, String URLweb) throws MailParseException, MailAuthenticationException,
+	public void registerStudent(Student studentForm, String URLweb, String URLpath) throws MailParseException, MailAuthenticationException,
 														MailSendException, MailException, StudentAlreadyRegisteredException{
 		
 		boolean isRegistered = findInfoService.isStudentRegistered(studentForm.getEmail());
@@ -60,11 +61,6 @@ public class RegistrationService implements IRegistrationService{
 			throw new StudentAlreadyRegisteredException();
 		}
 		
-		String confirmationToken = UUID.randomUUID().toString();
-		Role studentRole = roleRepository.findByName("STUDENTE");
-        
-		if(studentRole == null)
-			studentRole = roleRepository.save(new Role("STUDENTE"));
 		
 		Student student = new Student(studentForm.getName(),
 									studentForm.getSurname(),
@@ -73,10 +69,19 @@ public class RegistrationService implements IRegistrationService{
 									studentForm.getStudyTitle(),
 									studentForm.getDateOfBirth(),
 									studentForm.getEmail(),
-									confirmationToken,
+									null,
 									false,
 									passwordEncoder.encode(studentForm.getPassword()),
-									Arrays.asList(studentRole));
+									null);
+		
+		String confirmationToken = UUID.randomUUID().toString();
+		Role studentRole = roleRepository.findByName("STUDENT");
+        
+		if(studentRole == null)
+			studentRole = roleRepository.save(new Role("STUDENT"));
+		
+		student.setRoles(Arrays.asList(studentRole));
+		student.setConfirmationToken(confirmationToken);
 		
 		try {
 			studentRepository.save(student);
@@ -85,7 +90,7 @@ public class RegistrationService implements IRegistrationService{
 		}
 		
 		try {
-			emailService.sendConfirmationEmail(studentForm.getEmail(), URLweb, confirmationToken);
+			emailService.sendConfirmationEmail(studentForm.getEmail(), URLweb, URLpath, confirmationToken);
 		}catch(Exception ex){
 			throw ex;
 		}

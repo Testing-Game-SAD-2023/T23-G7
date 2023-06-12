@@ -29,7 +29,7 @@ public class RegistrationController {
 	public String registration(@ModelAttribute("student") Student studentForm, BindingResult result) {
 		
 		try {
-			registrationService.registerStudent(studentForm, "localhost:8080");
+			registrationService.registerStudent(studentForm, "localhost:8080", "/confirm/token=");
 		} catch (StudentAlreadyRegisteredException e) {
 			result.rejectValue("email", null, "User already registered.");
 			return "registration";

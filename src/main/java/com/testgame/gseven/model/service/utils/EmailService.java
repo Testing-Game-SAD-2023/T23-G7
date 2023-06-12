@@ -38,36 +38,34 @@ public class EmailService {
      * @return Il metodo non ritorna nessun parametro.
      * 
      */
-	public void sendEmailResetPassword(String email, String siteURL,String URLpath ,String passwordToken) {
+	public void sendEmailResetPassword(String email, String URLweb,String URLpath ,String passwordToken) {
 		String subject = "Cambio password";
 		String body = "Clicca sul seguente link per cambiare la tua password: " +
-				siteURL+ URLpath + passwordToken;
+				URLweb+ URLpath + passwordToken;
 		sendEmail(email, subject, body);
 	}
 	
 	
-	/*
-	 * Metodo che sfrutta la {@code SendMail} per inviare una mail all'indirizzo di posta elettronica inserito dall'utente per 
+	
+	 /** Metodo che sfrutta la {@code SendMail} per inviare una mail all'indirizzo di posta elettronica inserito dall'utente per 
 	 * verificare la sua validità.
 	 * 
 	 * @param email Parametro di tipo {@code String} che indica l'indirizzo email dell'utente
     	 * a cui mandare la mail.
      	 * 
-     	 * @param siteURL Parametro di tipo {@code String} che indica l'URL del sito web sul quale collegarsi
+     	 * @param URLweb Parametro di tipo {@code String} che indica l'URL del sito web sul quale collegarsi
     	 * per ricevere il servizio.
-     	 * 
+     	 * @param URLpath parametro di tipo {@code String} che indica la pagina del sito web dove avviare la conferma del profilo.
          * 
          * @param confirmationToken Parametro di tipo {@code String} che indica il token randomico per poter verificare
          * la mail in maniera univoca per la sua conferma
          * 
-         * @return Il metodo non ritorna nessun parametro.
-	 * 
+         * @return Il metodo non ritorna nessun parametro. 
 	 */
-	
-	public void sendConfirmationEmail(String email, String siteURL, String confirmationToken){
+	public void sendConfirmationEmail(String email, String URLweb, String URLpath, String confirmationToken){
 		String subject = "Conferma registrazione";
 		String body = "Clicca sul seguente link per confermare la tua registrazione: " +
-				siteURL+ "/confirm/token=" + confirmationToken;
+				URLweb+ URLpath + confirmationToken;
 		sendEmail(email, subject, body);
 	}
 	
