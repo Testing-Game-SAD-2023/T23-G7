@@ -54,7 +54,7 @@ public class ChangePasswordService implements IChangePasswordService{
 			throw new StudentNotFoundException();
 		}
 		
-		Student student = studentRepository.findByEmail(email);
+		Student student = findInfoService.getStudentByEmail(email);
 		
 		if(!student.isEnabled()) {
 			throw new StudentNotEnabledException();
@@ -90,7 +90,7 @@ public class ChangePasswordService implements IChangePasswordService{
 			throw new PasswordTokenNotFoundException();
 		}
 		
-		Student student = studentRepository.findByPasswordToken(passwordToken);
+		Student student = findInfoService.getStudentByPasswordToken(passwordToken);
 		student.setPassword(passwordEncoder.encode(newPassword));
 		student.setPasswordToken(null);
 		studentRepository.save(student);

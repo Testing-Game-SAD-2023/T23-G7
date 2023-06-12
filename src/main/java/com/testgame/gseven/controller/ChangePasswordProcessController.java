@@ -41,7 +41,7 @@ public class ChangePasswordProcessController {
 	}
 	
 	@PostMapping("/{passwordToken}")
-	public String changePasswordProcess(@PathVariable("passwordToken") String passwordToken, @ModelAttribute("password") String newPassword, BindingResult result, Model model) {
+	public String changePasswordProcess(@PathVariable("passwordToken") String passwordToken, @ModelAttribute("password") String newPassword, BindingResult result) {
 		
 		try {
 			changePasswordService.changePassword(passwordToken, newPassword);
