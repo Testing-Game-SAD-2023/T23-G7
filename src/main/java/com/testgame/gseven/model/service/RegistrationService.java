@@ -40,9 +40,11 @@ public class RegistrationService implements IRegistrationService{
 	 * L'oggetto {@studentForm} può essere popolato da un apposito form.
 	 * @param studentForm 	oggetto di tipo {@code Student} che deve contenere i campi pieni, al fine di salvare lo
 	 * 						studente sulla base dati
-	 * @return 				Non ritorna valori. Eventuali errori che possono presentarsi,
-	 * 						sono eccezioni che devono che devono essere opportunamente gestite con try-catch.
-	 * @throws StudentAlreadyRegisteredException si sta tentato di salvare nella base dati uno studente
+	 * @param URLweb 		parametro che verrà inserito nel corpo dell'email, e funge da link di conferma per confermare
+	 * 						l'identità dello studente.
+	 * @return 				Non ritorna valori. In caso di errori, restituisce le eccezioni che devono che devono
+	 * 						essere opportunamente gestite con try-catch.
+	 * @throws StudentAlreadyRegisteredException eccezione restituita quando si tenta di salvare nella base dati uno studente
 	 * 											con una email già registrata.
 	 * @throws MailParseException
 	 * @throws MailAuthenticationException
@@ -50,7 +52,7 @@ public class RegistrationService implements IRegistrationService{
 	 * @throws MailException
 	 * */
 	@Override
-	public void registerStudent(Student studentForm) throws MailParseException, MailAuthenticationException,
+	public void registerStudent(Student studentForm, String URLweb) throws MailParseException, MailAuthenticationException,
 														MailSendException, MailException, StudentAlreadyRegisteredException{
 		
 		boolean isRegistered = findInfoService.isStudentRegistered(studentForm.getEmail());
@@ -83,7 +85,7 @@ public class RegistrationService implements IRegistrationService{
 		}
 		
 		try {
-			emailService.sendConfirmationEmail(studentForm.getEmail(), "localhost:8080", confirmationToken);
+			emailService.sendConfirmationEmail(studentForm.getEmail(), URLweb, confirmationToken);
 		}catch(Exception ex){
 			throw ex;
 		}

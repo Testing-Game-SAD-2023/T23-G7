@@ -12,12 +12,12 @@ import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.dto.StudentDetails;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class StudentDetailsService implements UserDetailsService {
 
 	private IStudentDAO studentRepository;
 
 	@Autowired
-	public CustomUserDetailsService(IStudentDAO studentRepository) {
+	public StudentDetailsService(IStudentDAO studentRepository) {
 		this.studentRepository = studentRepository;
 	}
 	

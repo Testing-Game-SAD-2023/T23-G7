@@ -9,6 +9,6 @@ import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.utility.exceptions.StudentAlreadyRegisteredException;
 
 public interface IRegistrationService {
-	public void registerStudent(Student studentForm) throws MailParseException, MailAuthenticationException,
+	public void registerStudent(Student studentForm, String URLweb) throws MailParseException, MailAuthenticationException,
 	MailSendException, MailException, StudentAlreadyRegisteredException;
 }

@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.testgame.gseven.model.service.utils.CustomUserDetailsService;
+import com.testgame.gseven.model.service.utils.StudentDetailsService;
 
 
 @Configuration
@@ -20,11 +20,11 @@ public class SecurityConfig {
 	
 	
 	@SuppressWarnings("unused")
-	private CustomUserDetailsService userDetailsService;
+	private StudentDetailsService studentDetailsService;
 	
 	@Autowired
-	public SecurityConfig(CustomUserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
+	public SecurityConfig(StudentDetailsService userDetailsService) {
+		this.studentDetailsService = userDetailsService;
 	}
 
 	@Bean
