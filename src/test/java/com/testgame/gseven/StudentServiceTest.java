@@ -6,7 +6,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.testgame.gseven.model.service.utils.UtilityService;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class StudentServiceTest {
 
 	@MockBean
