@@ -44,8 +44,8 @@ public class FindInfoService {
 	 * @return Restituisce un oggetto {@code Student} con i campi popolati se viene trovato oppure
 	 * {@code null} se non viene trovato.
 	 */
-	public Student getStudentByPasswordToken(String pswtoken) {
-		return studentRepository.findByPasswordToken(pswtoken);
+	public Student getStudentByPasswordToken(String passwordToken) {
+		return studentRepository.findByPasswordToken(passwordToken);
 	}
 	
 	

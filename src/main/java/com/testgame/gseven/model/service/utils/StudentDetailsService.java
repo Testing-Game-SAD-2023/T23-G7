@@ -35,10 +35,10 @@ public class StudentDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
 	
-		Student studentUser = studentRepository.findByEmail(email);
+		Student studentDetails = studentRepository.findByEmail(email);
 		
-		if(studentUser != null && studentUser.isEnabled()) {
-			return new StudentDetails(studentUser);
+		if(studentDetails != null && studentDetails.isEnabled()) {
+			return new StudentDetails(studentDetails);
 		}else {
 			throw new UsernameNotFoundException("Invalid email or password");
 		}
