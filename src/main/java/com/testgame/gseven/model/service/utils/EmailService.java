@@ -20,25 +20,25 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 	
-    /*
-     * Metodo che sfrutta la {@code SendMail} per inviare una mail con uno specifico link atto al reset della password.
+    /**
+     * Metodo che sfrutta la {@code SendMail} per inviare una mail con uno specifico link atto al cambio della password.
      * 
-     * @param email Parametro di tipo {@code String} che indica l'indirizzo email dell'utente
+     * @param email Parametro di tipo {@code String} che indica l'indirizzo email dell'utente.
      * a cui mandare la mail.
      * 
-     * @param siteURL Parametro di tipo {@code String} che indica l'URL del sito web sul quale collegarsi
+     * @param URLweb Parametro di tipo {@code String} che indica l'URL del sito web sul quale collegarsi
      * per ricevere il servizio.
      * 
-     * @param URLpath Parametro di tipo {@code String} che specifica il percorso "siteURL/.." al quale fare
+     * @param URLpath Parametro di tipo {@code String} che specifica il percorso "URLweb:8080/URLpath" al quale fare
      * riferimento.
      * 
      * @param passwordToken Parametro di tipo {@code String} che indica il token randomico per poter verificare
-     * la mail in maniera univoca.
+     * la email dello studente in maniera univoca.
      * 
      * @return Il metodo non ritorna nessun parametro.
      * 
      */
-	public void sendEmailResetPassword(String email, String URLweb,String URLpath ,String passwordToken) {
+	public void sendEmailResetPassword(String email, String URLweb, String URLpath, String passwordToken) {
 		String subject = "Cambio password";
 		String body = "Clicca sul seguente link per cambiare la tua password: " +
 				URLweb+ URLpath + passwordToken;
@@ -70,7 +70,7 @@ public class EmailService {
 	}
 	
 	
-	/* Metodo che viene utilizzato per inviare effettivamente una mail  all'indirizzo di posta elettronica
+	/** Metodo che viene utilizzato per inviare effettivamente una mail all'indirizzo di posta elettronica
 	 * passato in ingresso. 
 	 * 
 	 * @param email Parametro di tipo {@code String} che indica l'indirizzo email dell'utente
@@ -89,10 +89,7 @@ public class EmailService {
 	 * @throws MailAuthenticationException
 	 * @throws MailSendException
 	 * @throws MailException
-	 * 
-	 * 
 	 */
-	
     private void sendEmail(String to, String subject, String body) throws MailParseException, MailAuthenticationException,
     																	MailSendException, MailException{
         SimpleMailMessage message = new SimpleMailMessage();

@@ -28,11 +28,11 @@ public class ChangePasswordProcessController {
 	}
 	
 	@GetMapping("/{pswtoken}")
-	public String getChangePasswordProcess(@PathVariable("pswtoken") String pswtoken) {
-		if(pswtoken.isEmpty())
+	public String getChangePasswordProcess(@PathVariable("pswtoken") String passwordToken) {
+		if(passwordToken.isEmpty())
 			return "redirect:/login";
 		
-		boolean isPasswordTokenFound = findInfoService.doesPasswordTokenExists(pswtoken);
+		boolean isPasswordTokenFound = findInfoService.doesPasswordTokenExists(passwordToken);
 		if(!isPasswordTokenFound) {
 			return "redirect:/login";
 		}

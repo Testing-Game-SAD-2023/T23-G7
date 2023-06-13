@@ -27,20 +27,20 @@ public class FindInfoService {
 	/** Cerca nella base dati lo studente con il token di conferma
 	 * fornito in ingresso e restituisce un oggetto Student popolato
 	 * dalle informazioni trovate nella base dati.
-	 * @param token chiave di ricerca dello studente nella base dati
+	 * @param confirmationToken token che funge da chiave di ricerca dello studente nella base dati.
 	 * @return Restituisce un oggetto {@code Student} con i campi popolati se viene trovato oppure 
 	 * {@code null} se non viene trovato.
 	 * @throws ConfirmationTokenNotFoundException restituita quando nonn viene trovato lo studente sulla base dati 
 	 * 												cercandolo tramite il confirmationToken
 	 *  */
-	public Student getStudentByConfirmationToken(String token) throws ConfirmationTokenNotFoundException {
-		return studentRepository.findByConfirmationToken(token);
+	public Student getStudentByConfirmationToken(String confirmationToken) throws ConfirmationTokenNotFoundException {
+		return studentRepository.findByConfirmationToken(confirmationToken);
 	}
 	
 	/** Cerca nella base dati lo studente con il token della password
 	 * fornito in ingresso e restituisce un oggetto Student popolato dalle
 	 * informazioni trovato nella base dati.
-	 * @param pswtoken chiave di ricerca dello studente nella base dati
+	 * @param passwordToken token che funge da chiave di ricerca dello studente nella base dati.
 	 * @return Restituisce un oggetto {@code Student} con i campi popolati se viene trovato oppure
 	 * {@code null} se non viene trovato.
 	 */

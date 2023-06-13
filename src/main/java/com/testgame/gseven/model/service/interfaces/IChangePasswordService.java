@@ -5,6 +5,6 @@ import com.testgame.gseven.utility.exceptions.StudentNotEnabledException;
 import com.testgame.gseven.utility.exceptions.StudentNotFoundException;
 
 public interface IChangePasswordService {
-	public void beginChangePassword(String email,  String URLsite, String URLpath) throws StudentNotFoundException, StudentNotEnabledException;
+	public void beginChangePassword(String email,  String URLweb, String URLpath) throws StudentNotFoundException, StudentNotEnabledException;
 	public void changePassword(String passwordToken, String newPassword) throws PasswordTokenNotFoundException ;
 }
