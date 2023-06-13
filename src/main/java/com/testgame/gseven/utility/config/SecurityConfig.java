@@ -37,7 +37,7 @@ public class SecurityConfig {
                                 .requestMatchers("/resetPassword").permitAll()
                                 .requestMatchers("/resetPasswordProcess").permitAll()
                                 .requestMatchers("/logout").permitAll()
-                                .requestMatchers("/dashboard").hasAuthority("STUDENTE")
+                                .requestMatchers("/dashboard").hasAuthority("STUDENT")
                                 .anyRequest().permitAll()
                                 
     		   )
