@@ -96,12 +96,14 @@ public class RegistrationServiceTest {
 		
 		Mockito.when(findInfoService.isStudentRegistered(student.getEmail())).thenReturn(true);
 		Mockito.when(studentRepository.existsByEmail(student.getEmail())).thenReturn(true);
-        /*
+        
+
 		StudentAlreadyRegisteredException thrown = assertThrows(
 				StudentAlreadyRegisteredException.class,
+		           () -> registrationService.registerStudent(student, "localost:8080", "/blabla"),
+		           "Expected registerStudent() to throw, but it didn't");
 
-		assertThat(thrown.getClass()).isSameAs(StudentAlreadyRegisteredException.class);
-        verify(studentRepository).findByEmail(student.getEmail());
-	*/}
+		    assert(thrown.getMessage().contains("The student with this email is already registered."));
+	}
 	
 }

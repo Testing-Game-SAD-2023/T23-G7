@@ -20,7 +20,7 @@ import com.testgame.gseven.utility.exceptions.StudentAlreadyRegisteredException;
 public class RegistrationControllerTest {
 
 	
-	
+	@MockBean
 	private RegistrationController registrationController;
 	
 	
@@ -46,8 +46,8 @@ public class RegistrationControllerTest {
 		student.setEmail("emanueledimaioscuola@gmail.com");
 		student.setPassword("123");
 		
-		
-/*		StudentAlreadyRegisteredException thrown = assertThrows(
+	/*	
+		StudentAlreadyRegisteredException thrown = assertThrows(
 				StudentAlreadyRegisteredException.class,
 		           () -> registrationService.registerStudent(student, "localost:8080"),
 		           "Expected registerStudent() to throw, but it didn't");
