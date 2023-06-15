@@ -5,6 +5,6 @@ import java.lang.Exception;
 @SuppressWarnings("serial")
 public class StudentNotFoundException extends Exception{
 	public StudentNotFoundException() {
-        super("Student not found. ");
+        super("Student not found.");
     }
 }

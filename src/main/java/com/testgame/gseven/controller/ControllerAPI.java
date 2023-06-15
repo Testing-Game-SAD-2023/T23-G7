@@ -33,7 +33,6 @@ public class ControllerAPI {
 	@Autowired
 	private FindInfoService findInfoService;
 	
-	
 	@Autowired
 	private ConfirmationService confirmationService;
 	
@@ -47,10 +46,10 @@ public class ControllerAPI {
 		if(student != null) {
 			return student.getId();
 		}
-		return null;
+		return "NULL";
     }
 
-	@GetMapping("/studentInfo")
+	@GetMapping("/studentinfo")
     public Student getStudentInfoHTTP(@RequestBody String jsonId) {
 		JSONObject obj = new JSONObject(jsonId);
 		String id = obj.getString("id");
@@ -100,7 +99,7 @@ public class ControllerAPI {
 		String email = obj.getString("email");
 		
 		try {
-			changePasswordService.beginChangePassword(email, "localhost:8080", "/changepassword/token=");
+			changePasswordService.beginChangePassword(email, "localhost:8080", "/changePasswordProcess/token=");
 		} catch (StudentNotFoundException e) {
 			return e.getMessage();
 		} catch (StudentNotEnabledException e) {
