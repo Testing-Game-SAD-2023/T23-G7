@@ -18,7 +18,7 @@ public class LogoutController {
 	private AuthService authService;
 	
 	@GetMapping("/logout")
-	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (authService.isStudentAuthenticated(auth)){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);

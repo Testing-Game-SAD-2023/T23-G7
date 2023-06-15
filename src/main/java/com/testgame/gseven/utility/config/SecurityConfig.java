@@ -30,29 +30,29 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	
-       http.authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/registration").permitAll()
-                                .requestMatchers("/login").permitAll()
-                                .requestMatchers("/confirm").permitAll()
-                                .requestMatchers("/resetPassword").permitAll()
-                                .requestMatchers("/resetPasswordProcess").permitAll()
-                                .requestMatchers("/logout").permitAll()
-                                .requestMatchers("/dashboard").hasAuthority("STUDENT")
-                                .anyRequest().permitAll()
-                                
-    		   )
-                .formLogin((form) -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/dashboard")
-                                .usernameParameter("email")
-                                .passwordParameter("password")
-                                .permitAll()
-                )
-       			.logout((logout) -> logout
-       							.logoutUrl("/logout")
-       							.logoutSuccessUrl("/login")
-       							.permitAll())
+		//da cancellare per il deployment
+       http
+       		.csrf((csrf) -> csrf.disable())
+       		.authorizeHttpRequests((requests) -> requests
+       				.requestMatchers("/registration").permitAll()
+       				.requestMatchers("/login").permitAll()
+       				.requestMatchers("/confirm").permitAll()
+                    .requestMatchers("/resetPassword").permitAll()
+                    .requestMatchers("/resetPasswordProcess").permitAll()
+                    .requestMatchers("/logout").hasAuthority("STUDENT")
+                    .requestMatchers("/dashboard").hasAuthority("STUDENT")
+                    .anyRequest().permitAll())
+       		.formLogin((form) -> form
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/dashboard")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .permitAll())
+       		.logout((logout) -> logout
+       				.logoutUrl("/logout")
+       				.logoutSuccessUrl("/login")
+       				.permitAll())
        			.exceptionHandling(handling -> handling.accessDeniedPage("/access-denied"));
        return http.build();
 	}

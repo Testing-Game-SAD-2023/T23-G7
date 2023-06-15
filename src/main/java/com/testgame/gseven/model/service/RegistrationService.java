@@ -56,13 +56,16 @@ public class RegistrationService implements IRegistrationService{
 	public void registerStudent(Student studentForm, String URLweb, String URLpath) throws MailParseException, MailAuthenticationException,
 														MailSendException, MailException, StudentAlreadyRegisteredException{
 		
-		boolean isRegistered = findInfoService.isStudentRegistered(studentForm.getEmail());
-		if(isRegistered) {
-			throw new StudentAlreadyRegisteredException();
+		Student student = findInfoService.getStudentByEmail(studentForm.getEmail());
+		if(student != null) {
+			if(student.isEnabled()) {
+				throw new StudentAlreadyRegisteredException();
+			}else {
+				findInfoService.deleteStudentByEmail(student.getEmail());
+			}
 		}
 		
-		
-		Student student = new Student(studentForm.getName(),
+		student = new Student(studentForm.getName(),
 									studentForm.getSurname(),
 									studentForm.getGender(),
 									studentForm.getNationality(),

@@ -14,6 +14,15 @@ public class FindInfoService {
 	private IStudentDAO studentRepository;
 	
 	/** Cerca nella base dati lo studente con l'email fornita in ingresso
+	 *  e lo cancella dalla base dati.
+	 * @param email chiave di ricerca dello studente nella base dati.
+	 * @return Non restituisce valori.
+	 * */
+	public void deleteStudentByEmail(String email) {
+		studentRepository.deleteByEmail(email);
+	}
+	
+	/** Cerca nella base dati lo studente con l'email fornita in ingresso
 	 *  e restituisce un oggetto Student popolato dalle informazioni
 	 *  trovate nella base dati. Restituisce null se l'email non corrisponde a nessuno studente.
 	 * @param email chiave di ricerca dello studente nella base dati.

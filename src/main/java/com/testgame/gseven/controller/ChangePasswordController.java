@@ -14,7 +14,8 @@ public class ChangePasswordController {
 	
 	@Autowired
 	private ChangePasswordService changePasswordService;
-
+	
+	
 	@GetMapping("/changePassword")
 	public String changePasswordForm() {
 		return "changePassword";

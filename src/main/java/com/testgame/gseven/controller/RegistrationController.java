@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import com.testgame.gseven.model.dto.Student;
 import com.testgame.gseven.model.service.RegistrationService;
 import com.testgame.gseven.utility.exceptions.StudentAlreadyRegisteredException;
@@ -37,4 +38,6 @@ public class RegistrationController {
 		
 		return "redirect:/login";
 	}
+	
+	
 }
