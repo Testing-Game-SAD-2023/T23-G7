@@ -42,15 +42,12 @@ public class RegistrationService implements IRegistrationService{
 	 * 						studente sulla base dati
 	 * @param URLweb 		parametro che verrà inserito nel corpo dell'email, e funge da link di conferma per confermare
 	 * 						l'identità dello studente.
-	 * @param URLpath 
+	 * @param URLpath 		parametro che verrà inserito nel corpo dell'email, concatenato con URLweb, che indica un percorso
+	 * 						del sito che effettuerà l'abilitazione dello studente.
 	 * @return 				Non ritorna valori. In caso di errori, restituisce le eccezioni che devono che devono
 	 * 						essere opportunamente gestite con try-catch.
 	 * @throws StudentAlreadyRegisteredException eccezione restituita quando si tenta di salvare nella base dati uno studente
 	 * 											con una email già registrata.
-	 * @throws MailParseException
-	 * @throws MailAuthenticationException
-	 * @throws MailSendException
-	 * @throws MailException
 	 * */
 	@Override
 	public void registerStudent(Student studentForm, String URLweb, String URLpath) throws MailParseException, MailAuthenticationException,
