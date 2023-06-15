@@ -54,8 +54,16 @@ public class ControllerAPI {
     public Student getStudentInfoHTTP(@RequestBody String jsonId) {
 		JSONObject obj = new JSONObject(jsonId);
 		String id = obj.getString("id");
+	    
+	    	Student student = new Student();
+	    
+	    	try{
+		   student = findInfoService.getStudentById(id);
+		}
+		catch(Exception e) {
+			return null;
+		}
 		
-		Student student = findInfoService.getStudentById(id);
 		return student;
     }
 	
