@@ -84,6 +84,9 @@ public class ControllerAPI {
 		catch(Exception e) {
 			return false;
 		}
+		if(!student.isEnabled()) {
+			return false;
+		}
 		
 	    String encryptedPassword = student.getPassword();
 	    boolean isPasswordRight = passwordEncoder.matches(password, encryptedPassword);
