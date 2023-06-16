@@ -67,7 +67,7 @@ public class ControllerAPI {
 	
 	
 	
-	/* RestController GET /api/studentinfo:
+	/* RestController GET /api/studentinfo: 
 	 * Questa API permette di inoltrare una richiesta HTTP di tipo GET 
 	 * che a partire dall’ID ritorna le info dello studente salvato come oggetto JSON.
 	 * Per prima cosa si estrapola il valore dell'ID dal JSON passato come input
