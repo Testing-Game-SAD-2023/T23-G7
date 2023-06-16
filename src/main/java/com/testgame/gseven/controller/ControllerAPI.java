@@ -42,6 +42,17 @@ public class ControllerAPI {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	
+	
+	/* RestController GET /api/studentid:
+	 * Questa API di tipo Get permette di restituire l'ID dello studente registrato
+	 * a partire dal suo ID passato tramite oggetto JSON. 
+	 * Per prima cosa si estrapola il valore mail dall'oggetto JSON ricevuto.
+	 * Successivamente si ricerca lo studente all'interno della base dati avente
+	 * quella specifica mail.
+	 * Se non viene trovato si restituisce NULL, l'ID altrimenti.
+	 */
+	
 	@GetMapping("/studentid")
     public String getStudentIdHTTP(@RequestBody String jsonEmail) {
 		JSONObject obj = new JSONObject(jsonEmail);
@@ -53,6 +64,17 @@ public class ControllerAPI {
 		}
 		return "NULL";
     }
+	
+	
+	
+	/* RestController GET /api/studentinfo:
+	 * Questa API permette di inoltrare una richiesta HTTP di tipo GET 
+	 * che a partire dall’ID ritorna le info dello studente salvato come oggetto JSON.
+	 * Per prima cosa si estrapola il valore dell'ID dal JSON passato come input
+	 * Successivamente si ricerca lo studente con quell'ID all'interno della base dati.
+	 * Se esso viene trovato viene restituito lo studente, NULL altrimenti. 
+	 *  
+	 */
 
 	@GetMapping("/studentinfo")
     public Student getStudentInfoHTTP(@RequestBody String jsonId) {
@@ -71,6 +93,18 @@ public class ControllerAPI {
 		return student;
     }
 	
+	
+	/* RestController GET /api/login:
+	 * Questa API permette di inoltrare una richiesta HTTP di tipo POST 
+	 * che avvia il processo di autenticazione dello studente. .
+	 * 
+	 * Per prima cosa si estrapolano email e password dal JSON passato come payload.
+	 * Successivamente, si ricerca lo studente sulla base dati con quella mail.
+	 * Se lo studente non esiste viene lanciata una eccezione. Al contrario se lo studente
+	 * viene trovato si effettua un confronto fra le due password.
+	 * Se tutto va a buon fine viene restituito un valore true, false altrimenti. 
+	 */
+
 	@PostMapping("/login")
     public boolean tryLogin(@RequestBody String credentials) {
 		JSONObject obj = new JSONObject(credentials);
@@ -93,6 +127,17 @@ public class ControllerAPI {
 		return isPasswordRight;
     }
 	
+	
+	
+	/*Rest Controller POST /api/registration:
+	 * Questa API permette di inoltrare una richiesta HTTP di tipo POST 
+	 * che avvia il processo di registrazione dello studente.
+	 * 
+	 * Nel caso in cui la registrazione va a buon fine, viene restituito
+	 * un messaggio "SUCCESS" altrimenti l'eccezione generata. 
+	 * 
+	 */
+	
 	@PostMapping("/registration")
 	public String registration(@RequestBody Student studentForm) {
 		try {
@@ -102,6 +147,17 @@ public class ControllerAPI {
 		}
 		return "SUCCESS";
 	}
+	
+	
+	/*Rest Controller POST /confirm/token
+	 * Questa API permette di inoltrare una richiesta HTTP di tipo POST che 
+	 * avvia il processo di validazione della mail attraverso il link ricevuto tramite mail.
+	 * 
+	 * Una volta estrapolato il valore del confirmationToken dall'oggetto JSON passato come
+	 * payload viene lanciato il servizio di conferma email.
+	 * Se la convalida dell'account va a buon fine si ritorna un messaggio di successo altrimenti
+	 * la relativa eccezione lanciata. 
+	 */
 	
 	
 	@PostMapping("/confirm/token")
