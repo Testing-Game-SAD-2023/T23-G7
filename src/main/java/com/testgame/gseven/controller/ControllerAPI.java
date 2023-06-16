@@ -2,6 +2,9 @@ package com.testgame.gseven.controller;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +39,8 @@ public class ControllerAPI {
 	@Autowired
 	private ConfirmationService confirmationService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/studentid")
     public String getStudentIdHTTP(@RequestBody String jsonEmail) {
@@ -64,6 +69,25 @@ public class ControllerAPI {
 		}
 		
 		return student;
+    }
+	
+	@PostMapping("/login")
+    public boolean tryLogin(@RequestBody String credentials) {
+		JSONObject obj = new JSONObject(credentials);
+		String email = obj.getString("email");
+	    String password = obj.getString("password");
+	    Student student = new Student();
+	    
+	    try{
+		   student = findInfoService.getStudentByEmail(email);
+		}
+		catch(Exception e) {
+			return false;
+		}
+		
+	    String encryptedPassword = student.getPassword();
+	    boolean isPasswordRight = passwordEncoder.matches(password, encryptedPassword);
+		return isPasswordRight;
     }
 	
 	@PostMapping("/registration")
