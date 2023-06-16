@@ -23,5 +23,5 @@ L'applicazione di autenticazione è stata progettata utilizzando il pattern arch
 ## [Wiki](https://github.com/Testing-Game-SAD-2023/T23-G7/wiki)
 
 ## Download dell'eseguibile disponibile al seguente link:
-https://communitystudentiunina-my.sharepoint.com/:u:/r/personal/emanuel_dimaio_studenti_unina_it/Documents/target.rar?csf=1&web=1&e=sPz7Nn
+https://communitystudentiunina-my.sharepoint.com/:u:/g/personal/emanuel_dimaio_studenti_unina_it/EeyivYi7VOVNnheBxCCS4SABvdt4sJ5pTcu86XU1P2Rl4Q?e=j9sWIh
 
