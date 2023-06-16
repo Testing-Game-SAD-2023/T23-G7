@@ -177,7 +177,8 @@ public class ControllerAPI {
 	
 	/* Rest Controller POST /changepassword
 	 * Questa API permette di inoltrare una richiesta HTTP di tipo POST che 
-	 * avvia il processo di reset della password.
+	 * avvia il processo di cambio password. al fine di inviare una mail all’indirizzo
+	 * di posta passato come input. 
 	 * Dopo aver estrapolato il valore della mail dall'oggetto JSON passato come payload
 	 * viene avviato il processo di beginChangePassword. A questo punto:
 	 * - Se lo studente con quella mail non viene trovato viene lanciata una eccezione;
@@ -200,6 +201,19 @@ public class ControllerAPI {
 		
 		return "SUCCESS";
 	}
+	
+	
+	/* Rest Controller POST /changepassword/token
+	 * Questa API permette di inoltrare una richiesta HTTP di tipo POST che 
+	 * avvia il processo di reset della password.
+	 * 
+	 * Dopo aver estrapolato il valore del passwordToken e la nuova password dall'oggetto JSON
+	 * passato come payload, si effettua un controllo su password token.
+	 * - Se il token è vuoto o non è trovato sulla base dati viene lanciata una eccezione.
+	 * - Se va a tutto a buon fine si associa la nuova password allo studente avente quello
+	 * specifico token. 
+	 * 
+	 */
 	
 	@PostMapping("/changepassword/token")
 	public String changePasswordProcess(@RequestBody String jsonChangePassword) {
